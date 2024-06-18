@@ -10,9 +10,11 @@ struct element_t//Datos de la ficha
     //aqui definir que va a necesitar ficha
     
     value_t value;
+
+    element_t *next;
 };
 
-class HashTable{
+class TablaHash{
     public:
         virtual bool empty() = 0;
         virtual int size() = 0;
