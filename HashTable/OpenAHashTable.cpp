@@ -1,30 +1,50 @@
 #include "OpenAHashTable.hpp"
 #include <cstdlib>
 
-OpenAHashTable::OpenAHashTable(){
+HashTable::HashTable(){
 
 }
-OpenAHashTable::~OpenAHashTable(){
+HashTable::~HashTable(){
 
 }
-int hash(key_t)//función hash
+int hash(key_t k)//función hash
 {
-
+    return  k%MAX;
 }
 
-bool OpenAHashTable::empty(){
+bool HashTable::empty(){
 
     
 }
-int OpenAHashTable::size(){
+int HashTable::size(){
 
 }
-element_t OpenAHashTable::find(key_t k){
+element_t HashTable::find(key_t k)//función de busqueda
+{
 
 }
-void OpenAHashTable::insert(element_t e){
+void HashTable::insert(element_t e)//funcion de insertar
+{
+    int posicion = hash(e.key);
+    if (_container[posicion]==NULL)
+    {
+        element_t *l=(element_t*)malloc(sizeof(element_t));
+        *l=e;
+        l->next=NULL;
+    }else{
 
+        
+        element_t *l=(element_t*)malloc(sizeof(element_t));
+        l->next =  _container[posicion];
+        _container[posicion] = l;
+        /*
+        Este insert tiene orden 1, a diferencia de colocar al final y hacer recorrer para insertar
+        */
+
+    }
+    
 }
-void OpenAHashTable::remove(key_t k){
+void HashTable::remove(key_t k)//función de eliminar
+{
 
 }
