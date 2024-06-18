@@ -1,12 +1,14 @@
-#ifndef HASH_TABLE_T
+#ifndef HASH_TABLE_T 
 #define HASH_TABLE_T
 
 typedef int value_t;
 typedef int key_t;
 
-struct element_t
+struct element_t//Datos de la ficha
 {
-    key_t key;
+    key_t key;//Clave de la ficha.
+    //aqui definir que va a necesitar ficha
+    
     value_t value;
 };
 

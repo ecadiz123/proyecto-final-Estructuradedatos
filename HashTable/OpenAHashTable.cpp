@@ -7,7 +7,8 @@ OpenAHashTable::OpenAHashTable(){
 OpenAHashTable::~OpenAHashTable(){
 
 }
-int hash(key_t){
+int hash(key_t)//función hash
+{
 
 }
 
