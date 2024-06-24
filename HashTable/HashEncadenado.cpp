@@ -75,6 +75,7 @@ void HashEncadenado::insert(element_t e)//funcion de insertar
         element_t *l=(element_t*)malloc(sizeof(element_t));
         *l=e;
         l->next=NULL;
+        _size++;
     }else{
 
         
@@ -84,7 +85,7 @@ void HashEncadenado::insert(element_t e)//funcion de insertar
         /*
         Este insert tiene orden 1, a diferencia de colocar al final y hacer recorrer para insertar
         */
-
+        _size++;
     }
     
 }
@@ -101,6 +102,7 @@ void HashEncadenado::remove(key_t k)//función de eliminar
             {
                 anterior=borrando;
                 borrando=(*borrando).next;
+                _size--;
 
             }
             
@@ -109,11 +111,12 @@ void HashEncadenado::remove(key_t k)//función de eliminar
         {
             _container[indicearreglo]=(*borrando).next;//apunta al siguiente, si no hay nada, apunta a un NULL que ya estaba definido en insert
             free(borrando);
+            _size--;
         }else//caso donde esta entremedio de la lista o al final, es dedcir anterior tiene valor
         {
             (*anterior).next=(*borrando).next;//si hay algo después el anterior apunta a este elemento, si esta al final, por el insert debería haber un NULL
             free(borrando);
-
+            _size--;
         }
         
 
