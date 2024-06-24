@@ -1,6 +1,7 @@
 #ifndef QUEUEADT_H
 #define QUEUEADT_H
-typedef int element_t;
+#include <string>
+typedef std::string element_t;//filas van a guardar el nombre de las personas por lo que se usa string
 class QueueADT {
  public:
   virtual bool empty() = 0;
