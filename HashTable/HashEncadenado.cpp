@@ -12,6 +12,38 @@ HashEncadenado:: HashEncadenado(){
 }
 HashEncadenado::~HashEncadenado(){
 
+element_t *borrador;
+int i=0;
+while (_size!=0)
+{
+   _container[i];
+   if (_container[i]->next!=NULL)//si hay lista en el espacio
+   {
+    element_t *borradoraux=NULL;//se va a usar un aux para borrar
+    borrador=_container[i];//borrador apunta al primero que esta en arreglo
+    while(borrador->next!=NULL)//borra todo menos el ultimo de la lista
+    {
+        borradoraux=borrador->next;//aux guarda siguiente nodo
+        free(borrador);//se borra nodo de lista
+        borrador=borradoraux;//se recupera direccion siguiente nodo
+        _size--;
+
+
+    }
+    free(borrador);//borra nodo que queda, el ultimo de la lista
+    _size--;
+   }else//si esta el elemento solo en el arreglo simplemente lo borra
+   {
+    borrador=_container[i];
+    free(borrador);
+    _size--;
+   }
+   
+   i++;
+   
+
+}
+
 
 }
 int HashEncadenado :: hash(key_t k)//función hash
