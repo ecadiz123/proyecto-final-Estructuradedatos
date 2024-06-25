@@ -1,7 +1,16 @@
 #include "HashTable/HashEncadenado.hpp"
 #include "queue/ListQueue.hpp"
 #include <iostream>
+void printficha(element_t ficha)//Función para printear ficha
+{
+std::cout<<"Rut:"<<"\n";
 
+
+
+
+
+
+}
 int main()
 {
     HashEncadenado guardadodeficha; // tabla donde se van a guardar las fichas
@@ -100,7 +109,7 @@ int main()
                         std::cout << "Ingrese rut sin digito " << "\n";
                         std::cin>>rut;
                         guardadodeficha.find(rut);
-
+                        
                         break;
                     case 2:
 
