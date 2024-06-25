@@ -16,9 +16,9 @@ class ListQueue : public QueueADT{
   ~ListQueue();
   bool empty();
   int size();
-  element_t front();
-  element_t back();
-  void enqueue(element_t);
+  elemento_t front();
+  elemento_t back();
+  void enqueue(elemento_t);
   void dequeue();
   
 };

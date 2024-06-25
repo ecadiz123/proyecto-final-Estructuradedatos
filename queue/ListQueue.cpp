@@ -39,7 +39,7 @@ int ListQueue::size(){ //definir tamanio de la fila
   
   return _size;
 }
-element_t ListQueue::front(){ //consulta elemnto de al frente
+elemento_t ListQueue::front(){ //consulta elemnto de al frente
 
   if (_front==NULL)
   {
@@ -48,7 +48,7 @@ element_t ListQueue::front(){ //consulta elemnto de al frente
   else
   return (*_front).e;
 }
-element_t ListQueue::back(){ // consulta elemento de al final
+elemento_t ListQueue::back(){ // consulta elemento de al final
   
   if (_back==NULL)
   {
@@ -58,7 +58,7 @@ element_t ListQueue::back(){ // consulta elemento de al final
   return (*_back).e;
   
 }
-void ListQueue::enqueue(element_t e)//ingresa elemento a la fila
+void ListQueue::enqueue(elemento_t e)//ingresa elemento a la fila
 {
   //crear nodo
   node *nuevo;
