@@ -5,7 +5,7 @@ void printficha(element_t ficha) // Función para printear ficha
 {
     std::cout << "Rut:" << "\n"; // imprime rut
 
-    std::cout << ficha.rut << "-" << char(ficha.digitoverificador);
+    std::cout << ficha.key << "-" << char(ficha.digitoverificador)<<"\n";
 
     std::cout << "Motivo de Consulta:" << "\n"; // imprime motivo de consulta
 
@@ -145,7 +145,7 @@ int main()
 
                             // se volvio requerimiento usar fflush para limpiar el buffer de entrada al trabajar con strings
                             std::cout << "Ingrese Rut sin digito verificador" << "\n";
-                            std::cin >> fichaaux.rut;
+                            std::cin >> fichaaux.key;
                             fflush(stdin);
                             std::cout << "Ingrese digito verificador" << "\n";
                             std::cin >> fichaaux.digitoverificador;

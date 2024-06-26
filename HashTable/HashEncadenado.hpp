@@ -6,14 +6,14 @@ class HashEncadenado : public HashTable{
         int _size;
         
         element_t * _container[MAX];//Define arreglo de fichas, es un arreglo de punteros que apuntan a fichas
-        int hash(key_t);
+        int hash(key_t k);
     public:
        HashEncadenado();
         ~HashEncadenado();
         bool empty();
         int size();
-        element_t find(key_t);
-        void insert(element_t);//Inserta elemento dentro de arreglo, crea un nodo donde el puntero del arreglo queda apuntando
-        void remove(key_t);
+        element_t find(key_t k);
+        void insert(element_t e);//Inserta elemento dentro de arreglo, crea un nodo donde el puntero del arreglo queda apuntando
+        void remove(key_t k);
         
 };

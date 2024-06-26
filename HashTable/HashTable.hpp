@@ -7,9 +7,9 @@ typedef int key_t; // en este caso int portque es el rut sin ultimo digito
 struct element_t // Datos de la ficha
 {
 
-    int rut;
+    
     char digitoverificador;
-    key_t key=rut; //va a ser el rut
+    key_t key; //va a ser el rut
 
     std::string motivodeconsulta;
     std::string antecedentesdentales;

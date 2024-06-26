@@ -105,11 +105,13 @@ void HashEncadenado::insert(element_t e)//funcion de insertar
         element_t *l=(element_t*)malloc(sizeof(element_t));
         *l=e;
         l->next=NULL;
+        _container[posicion]=l;
         _size++;
     }else{
 
         
         element_t *l=(element_t*)malloc(sizeof(element_t));
+       *l=e;
         l->next =  _container[posicion];
         _container[posicion] = l;
         /*
