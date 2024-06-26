@@ -40,7 +40,7 @@ int ListQueue::size(){ //definir tamanio de la fila
   return _size;
 }
 elemento_t ListQueue::front(){ //consulta elemnto de al frente
-  std:: string aux= _front->e;
+  
   if (_front!=NULL){
     return (*_front).e;
 
@@ -54,12 +54,12 @@ elemento_t ListQueue::front(){ //consulta elemnto de al frente
 
 elemento_t ListQueue::back(){ // consulta elemento de al final
   
-  if (_back==NULL)
-  {
-    return "0";
-  }
-  else
-  return (*_back).e;
+  if (_back!=NULL){
+    return (*_back).e;
+
+
+  }else 
+  return "0" ;//Devuelve string con valor 0
   
 }
 void ListQueue::enqueue(elemento_t el)//ingresa elemento a la fila
