@@ -9,8 +9,7 @@ struct element_t // Datos de la ficha
 
     int rut;
     char digitoverificador;
-    key_t key; // Clave de la ficha.
-    // aqui definir que va a necesitar ficha
+    key_t key=rut; //va a ser el rut
 
     std::string motivodeconsulta;
     std::string antecedentesdentales;
