@@ -116,7 +116,10 @@ int main()
 
                         std::cout << "Ingrese rut sin digito " << "\n";
                         std::cin >> rut;
+                        fflush(stdin);//limpia buffer
                         fichaaux = guardadodeficha.find(rut);
+                        if (fichaaux.rut!=0)//Si no encuentra la ficha devuelve una ficha sin rellenar de rut 0
+                        
                         printficha(fichaaux);
                         break;
                     case 2: // ingreso/modifica/elimina ficha
@@ -131,17 +134,22 @@ int main()
                         {
                         case 1: // Ingresar ficha
 
-
+                        //se volvio requerimiento usar fflush para limpiar el buffer de entrada al trabajar con strings
                         std::cout << "Ingrese Rut sin digito verificador" << "\n";
                         std::cin >> fichaaux.rut;
+                        fflush(stdin);
                         std::cout << "Ingrese digito verificador" << "\n";
                         std::cin >> fichaaux.digitoverificador;
+                        fflush(stdin);
                         std::cout << "Ingrese motivo de consulta" << "\n";
                         std::cin >> fichaaux.motivodeconsulta;
+                        fflush(stdin);
                         std::cout << "Ingrese antecedentes dentales" << "\n";
                         std::cin >> fichaaux.antecedentesdentales;
+                        fflush(stdin);
                         std::cout << "Ingrese piezas a tratar" << "\n";
                         std::cin >> fichaaux.piezasatratar;
+                        fflush(stdin);
                         guardadodeficha.insert(fichaaux);
 
 
