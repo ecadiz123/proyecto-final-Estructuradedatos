@@ -31,8 +31,9 @@ int main()
 
     // variables fichas
     element_t fichaaux;
+    element_t fichaaux2;
     int ingresoficha;
-    int rut;
+    key_t rut;//llave a ingresar para posicion
     int modificar;
     std::cout << "Bienvenido" << "\n";
     do // se repite hasta que salga
@@ -110,7 +111,7 @@ int main()
                 std::cout << "Ingrese que desea hacer" << "\n";
 
                 std::cout << "1. Consultar ficha" << "\n";
-                std::cout << "2. Añadir/modificar/eliminar ficha" << "\n";
+                std::cout << "2. Ingresar/modificar/eliminar ficha" << "\n";
                 std::cin >> ingresoficha;
                 fflush(stdin); // limpia buffer
                 {
@@ -122,10 +123,12 @@ int main()
                         std::cout << "Ingrese rut sin digito " << "\n";
                         std::cin >> rut;
                         fflush(stdin); // limpia buffer
-                        fichaaux = guardadodeficha.find(rut);
-                        if (fichaaux.rut != 0) // Si no encuentra la ficha devuelve una ficha sin rellenar de rut 0
+                        fichaaux2 = guardadodeficha.find(rut);
+                        if (fichaaux2.key != 0) // Si no encuentra la ficha devuelve una ficha sin rellenar de rut 0
 
-                            printficha(fichaaux);
+                            printficha(fichaaux2);
+                        else
+                        std::cout<<"No se encontro ficha"<<"\n";
                         break;
                     case 2: // ingreso/modifica/elimina ficha
 
