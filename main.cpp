@@ -75,7 +75,7 @@ int main()
 {
     HashEncadenado guardadodeficha; // tabla donde se van a guardar las fichas
     ListQueue normal, urgencia;     // fila de urgencia y la fila normal
-    ListQueue *pnormal=&normal, *purgencia=&urgencia;//punteros para cada fila para trabajar los valores por referencia en funciones
+    
     int ingreso;
 
     // variables fila
@@ -114,10 +114,11 @@ int main()
                 {
                 case 1: // quien debe pasar siguiente
 
-                    consultafilas(&urgencia, &normal);
+                    consultafilas(&urgencia, &normal);//pasa por referncia porque es una función
                     break;
                 case 2: // Ingreso de pacientes
-                    ingresofilaespera(&urgencia, &normal);
+                    ingresofilaespera(&urgencia, &normal);//pasa por referencia porque es una función
+
                     break;
                 default:
                     std::cout << "Error no siguio instrucciones" << "\n";
