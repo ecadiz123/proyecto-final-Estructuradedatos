@@ -43,7 +43,7 @@ elemento_t ListQueue::front(){ //consulta elemnto de al frente
 
   if (_front==NULL)
   {
-    return 0;
+    return "0";
   }
   else
   return (*_front).e;
@@ -52,7 +52,7 @@ elemento_t ListQueue::back(){ // consulta elemento de al final
   
   if (_back==NULL)
   {
-    return 0;
+    return "0";
   }
   else
   return (*_back).e;
