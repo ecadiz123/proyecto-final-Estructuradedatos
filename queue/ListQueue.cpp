@@ -40,14 +40,18 @@ int ListQueue::size(){ //definir tamanio de la fila
   return _size;
 }
 elemento_t ListQueue::front(){ //consulta elemnto de al frente
+  std:: string aux= _front->e;
+  if (_front!=NULL){
+    return (*_front).e;
 
-  if (_front==NULL)
-  {
-    return "0";
-  }
-  else
-  return (*_front).e;
+
+  }else 
+  return "0" ;//Devuelve string con valor 0
+
+
 }
+
+
 elemento_t ListQueue::back(){ // consulta elemento de al final
   
   if (_back==NULL)
@@ -58,12 +62,12 @@ elemento_t ListQueue::back(){ // consulta elemento de al final
   return (*_back).e;
   
 }
-void ListQueue::enqueue(elemento_t e)//ingresa elemento a la fila
+void ListQueue::enqueue(elemento_t el)//ingresa elemento a la fila
 {
   //crear nodo
   node *nuevo;
   nuevo=(node*)malloc(sizeof(node));//es necesario inicializar manualmente despues de malloc
-  (*nuevo).e= e;
+  (*nuevo).e= el;
   (*nuevo).next=NULL;
   if (_front!=NULL)//front va a ser NULL solo en el caso de una fila vacia.
   {
