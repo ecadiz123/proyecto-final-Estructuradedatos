@@ -74,7 +74,9 @@ for ( int i = 0; i < MAX; i++)
 
 if (lugararreglo==NULL)//caso donde no se encontró ficha
 {
-    return *lugararreglo;//retorna un valor NULL
+    element_t vacio;
+    vacio.rut=0;
+    return vacio; ;// retorna una ficha sin rellenar de rut 0
 
 }else//caso donde está en el arreglo ahora hay que buscar en la fila.
 {
