@@ -65,19 +65,14 @@ element_t HashEncadenado::find(key_t k)//función de busqueda
 
 {
 
-element_t *lugararreglo=NULL;
+element_t *lugararreglo=_container[hash(k)];
 
-for ( int i = 0; i < MAX; i++)
-{
-    if(_container[i]!=NULL && _container[i]->key==k)
-    lugararreglo= _container[i];// se guarda direccion que indica en que parte del arreglo está
-}
 
 if (lugararreglo==NULL)//caso donde no se encontró ficha
 {
     element_t vacio;
-    vacio.rut=0;
-    return vacio; ;// retorna una ficha sin rellenar de rut 0
+    vacio.key=0;
+    return vacio; ;// retorna una ficha sin rellenar de key 0
 
 }else//caso donde está en el arreglo ahora hay que buscar en la fila.
 {
