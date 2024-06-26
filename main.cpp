@@ -5,7 +5,7 @@ void printficha(element_t ficha) // Función para printear ficha
 {
     std::cout << "Rut:" << "\n"; // imprime rut
 
-    std::cout << ficha.key << "-" << char(ficha.digitoverificador)<<"\n";
+    std::cout << ficha.key << "-" << char(ficha.digitoverificador) << "\n";
 
     std::cout << "Motivo de Consulta:" << "\n"; // imprime motivo de consulta
 
@@ -33,7 +33,7 @@ int main()
     element_t fichaaux;
     element_t fichaaux2;
     int ingresoficha;
-    key_t rut;//llave a ingresar para posicion
+    key_t rut; // llave a ingresar para posicion
     int modificar;
     std::cout << "Bienvenido" << "\n";
     do // se repite hasta que salga
@@ -83,22 +83,22 @@ int main()
 
                     break;
                 case 1: // quien debe pasar
-
-                    if (urgencia.empty() == true)
+                    if (normal.empty()!=false)
                     {
-                        std::cout << normal.front() << "\n";
+                        if (urgencia.empty() == true)
+                        {
+                            std::cout << normal.front() << "\n";
 
-                        std::cout << "1" << "\n";
-                        normal.dequeue();
+                            normal.dequeue();
+                        }
+                        else
+                        {
 
-                        std::cout << "2" << "\n";
-                    }
-                    else
-                    {
-
-                        std::cout << urgencia.front() << "\n";
-                        urgencia.dequeue();
-                    }
+                            std::cout << urgencia.front() << "\n";
+                            urgencia.dequeue();
+                        }
+                    }else 
+                    std::cout << "No hay pacientes en fila"<<"\n";
 
                     break;
                 default:
@@ -128,7 +128,7 @@ int main()
 
                             printficha(fichaaux2);
                         else
-                        std::cout<<"No se encontro ficha"<<"\n";
+                            std::cout << "No se encontro ficha" << "\n";
                         break;
                     case 2: // ingreso/modifica/elimina ficha
 
