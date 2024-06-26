@@ -166,7 +166,7 @@ int main()
 
                 std::cout << "Error no siguio instrucciones" << "\n";
 
-                return 1;
+                
                 break;
             }
         }
