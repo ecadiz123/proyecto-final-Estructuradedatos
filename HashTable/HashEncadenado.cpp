@@ -66,9 +66,10 @@ element_t HashEncadenado::find(key_t k)//función de busqueda
 {
 
 element_t *lugararreglo=NULL;
+
 for ( int i = 0; i < MAX; i++)
 {
-    if(_container[i]->key==k)
+    if(_container[i]!=NULL && _container[i]->key==k)
     lugararreglo= _container[i];// se guarda direccion que indica en que parte del arreglo está
 }
 
