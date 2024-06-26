@@ -1,15 +1,23 @@
 #include "HashTable/HashEncadenado.hpp"
 #include "queue/ListQueue.hpp"
 #include <iostream>
-void printficha(element_t ficha)//Función para printear ficha
+void printficha(element_t ficha) // Función para printear ficha
 {
-std::cout<<"Rut:"<<"\n";
+    std::cout << "Rut:" << "\n"; // imprime rut
 
+    std::cout << ficha.rut << "-" << char(ficha.digitoverificador);
 
+    std::cout << "Motivo de Consulta:" << "\n"; // imprime motivo de consulta
 
+    std::cout << ficha.motivodeconsulta << "\n";
 
+    std::cout << "Antecedentes Dentales:" << "\n";
 
+    std::cout << ficha.antecedentesdentales << "\n";
 
+    std::cout << "Piezas a tratar:" << "\n";
+    
+    std::cout << ficha.piezasatratar<< "\n";
 }
 int main()
 {
@@ -22,10 +30,10 @@ int main()
     int ingresofila, turno;
 
     // variables fichas
-    element_t fichaingreso;
+    element_t fichaaux;
     int ingresoficha;
     int rut;
-
+    int modificar;
     std::cout << "Bienvenido" << "\n";
     do // se repite hasta que salga
     {
@@ -107,12 +115,30 @@ int main()
                     case 1: // consulta ficha
 
                         std::cout << "Ingrese rut sin digito " << "\n";
-                        std::cin>>rut;
-                        guardadodeficha.find(rut);
-                        
+                        std::cin >> rut;
+                        fichaaux = guardadodeficha.find(rut);
+                        printficha(fichaaux);
                         break;
-                    case 2:
+                    case 2: // ingreso/modifica/elimina ficha
 
+                        std::cout << "Ingrese que desea hacer" << "\n";
+
+                        std::cout << "1. Ingresar Ficha" << "\n";
+                        std::cout << "2. Eliminar Ficha" << "\n";
+                        std::cout << "3. Modificar Ficha" << "\n";
+                        std::cin >> modificar;
+                        switch (modificar)
+                        {
+                        case 1: // Ingresar ficha
+
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            break;
+                        }
                         break;
                     default:
                         break;
