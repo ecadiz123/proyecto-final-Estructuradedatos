@@ -62,20 +62,21 @@ void ListQueue::enqueue(elemento_t el) // ingresa elemento a la fila
   // crear nodo
   node *nuevo; // puntero
 
-  nuevo = (node *)malloc(sizeof(node)); // es necesario inicializar manualmente despues de malloc
+  nuevo = (node *)malloc(sizeof(node)); //memoria asignada manualmente
   (*nuevo).e = el;                      // string dentro del nodo se iguala a elemento
   (*nuevo).next = NULL;                 // se inicializa el next en NULL
-  if (_front != NULL)                   // front va a ser NULL solo en el caso de una fila vacia.
+  if (_front == NULL)                   // front va a ser NULL solo en el caso de una fila vacia.
   {
-    // caso de una fila con elementos
-    (*_back).next = nuevo; // el ultimo elemento se hace apuntar al nuevo
-    _back = nuevo;         // puntero back ahora apunta al nuevo
+    //caso fila vacia
+    _front = nuevo; // front queda en el nuevo
+    _back = nuevo;  // back apunta a nuevo
     _size++;
   }
   else
-  {
-    _front = nuevo; // front queda en el nuevo
-    _back = nuevo;  // back apunta a nuevo
+  {   
+    // caso de una fila con elementos
+    (*_back).next = nuevo; // el ultimo elemento se hace apuntar al nuevo
+    _back = nuevo;         // puntero back ahora apunta al nuevo
     _size++;
   }
 }
