@@ -8,7 +8,7 @@ class QueueADT {
   virtual int size() = 0;
   virtual elemento_t front() = 0;
   virtual elemento_t back() = 0;
-  virtual void enqueue(elemento_t) = 0;
+  virtual void enqueue(elemento_t ) = 0;
   virtual void dequeue() = 0;
 };
 #endif
