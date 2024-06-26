@@ -131,6 +131,20 @@ int main()
                         {
                         case 1: // Ingresar ficha
 
+
+                        std::cout << "Ingrese Rut sin digito verificador" << "\n";
+                        std::cin >> fichaaux.rut;
+                        std::cout << "Ingrese digito verificador" << "\n";
+                        std::cin >> fichaaux.digitoverificador;
+                        std::cout << "Ingrese motivo de consulta" << "\n";
+                        std::cin >> fichaaux.motivodeconsulta;
+                        std::cout << "Ingrese antecedentes dentales" << "\n";
+                        std::cin >> fichaaux.antecedentesdentales;
+                        std::cout << "Ingrese piezas a tratar" << "\n";
+                        std::cin >> fichaaux.piezasatratar;
+                        guardadodeficha.insert(fichaaux);
+
+
                             break;
                         case 2:
                             break;
