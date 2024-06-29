@@ -64,7 +64,7 @@ void ingresofilaespera(ListQueue *urgencia, ListQueue *normal) // funcion que a√
 
 void printficha(element_tablahash ficha) // Funci√≥n para printear ficha
 {
-    std::cout << "Rut:" << "\n"; // imprime rut
+    std::cout << "Rut:" << "\n"; 
 
     std::cout << ficha.key << "-" << ficha.digitoverificador << "\n";
 
