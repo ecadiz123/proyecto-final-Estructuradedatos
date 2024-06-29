@@ -68,10 +68,15 @@ void printficha(element_tablahash ficha) // Función para printear ficha
 
     std::cout << ficha.key << "-" << ficha.digitoverificador << "\n";
 
-    std::cout << "Piezas a tratar:" << "\n";
+    std::cout << "Motivo de consulta" << "\n";
+
+    std::cout << ficha.motivoconsulta << "\n";
+    std::cout << "Antecedentes dentales" << "\n";
+
+    std::cout << ficha.antecedentesdentales << "\n";
+    std::cout << "Pieza a tratar:" << "\n";
 
     std::cout << ficha.piezaatratar << "\n";
-    fflush(stdin);
 }
 void consultaficha(HashEncadenado *fichasguardadas) // funcion para consultar fichas
 {
@@ -100,6 +105,12 @@ void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva 
     fflush(stdin);
     std::cout << "Ingrese digito verificador" << "\n";
     std::cin >> fichaaux.digitoverificador;
+    fflush(stdin);
+    std::cout << "Ingrese motivo de consulta:" << "\n";
+    std::cin >> fichaaux.motivoconsulta;
+    fflush(stdin);
+    std::cout << "Ingrese antecedentes dentales" << "\n";
+    std::cin >> fichaaux.antecedentesdentales;
     fflush(stdin);
     std::cout << "Ingrese piezas a tratar" << "\n";
     std::cin >> fichaaux.piezaatratar;
