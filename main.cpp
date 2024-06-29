@@ -68,13 +68,13 @@ void printficha(element_tablahash ficha) // Función para printear ficha
 
     std::cout << ficha.key << "-" << ficha.digitoverificador << "\n";
 
-    std::cout << "Motivo de consulta" << "\n";
+    std::cout << "\n"<<"Motivo de consulta" << "\n";
 
     std::cout << ficha.motivoconsulta << "\n";
-    std::cout << "Antecedentes dentales" << "\n";
+    std::cout << "\n"<<"Antecedentes dentales" << "\n";
 
     std::cout << ficha.antecedentesdentales << "\n";
-    std::cout << "Pieza a tratar:" << "\n";
+    std::cout << "\n"<<"Pieza a tratar:" << "\n";
 
     std::cout << ficha.piezaatratar << "\n";
 }
