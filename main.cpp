@@ -61,21 +61,6 @@ void ingresofilaespera(ListQueue *urgencia, ListQueue *normal) // funcion que a�
     else
         (*urgencia).enqueue(rut);
 }
-void consultaficha(HashEncadenado fichasguardadas, key_tablahash rutk) //funcion para consultar fichas
-{
-    
-    element_tablahash fichaaux;//ficha auxiliar
-    
-    std::cout << "Ingrese rut sin digito verificador ni puntos " << "\n";
-    std::cin >> rutk;
-    fflush(stdin); // limpia buffer
-    fichaaux = fichasguardadas.find(rutk);
-    if (fichaaux.key != 0) // Si no encuentra la ficha devuelve una ficha sin rellenar de rut 0
-
-        printficha(fichaaux);
-    else
-        std::cout << "No se encontro ficha" << "\n";
-}
 
 void printficha(element_tablahash ficha) // Función para printear ficha
 {
@@ -94,6 +79,21 @@ void printficha(element_tablahash ficha) // Función para printear ficha
     std::cout << "Piezas a tratar:" << "\n";
 
     std::cout << ficha.piezasatratar << "\n";
+}
+void consultaficha(HashEncadenado fichasguardadas, key_tablahash rutk) //funcion para consultar fichas
+{
+    
+    element_tablahash fichaaux;//ficha auxiliar
+    
+    std::cout << "Ingrese rut sin digito verificador ni puntos " << "\n";
+    std::cin >> rutk;
+    fflush(stdin); // limpia buffer
+    fichaaux = fichasguardadas.find(rutk);
+    if (fichaaux.key != 0) // Si no encuentra la ficha devuelve una ficha sin rellenar de rut 0
+
+        printficha(fichaaux);
+    else
+        std::cout << "No se encontro ficha" << "\n";
 }
 int main()
 {
