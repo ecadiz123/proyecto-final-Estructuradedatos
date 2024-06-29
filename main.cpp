@@ -1,6 +1,7 @@
 #include "HashTable/HashEncadenado.hpp"
 #include "queue/ListQueue.hpp"
 #include <iostream>
+
 void printficha(element_t ficha) // Función para printear ficha
 {
     std::cout << "Rut:" << "\n"; // imprime rut
@@ -19,10 +20,62 @@ void printficha(element_t ficha) // Función para printear ficha
 
     std::cout << ficha.piezasatratar << "\n";
 }
+
+/*
+4 funciones de la app
+consultar fila de espera
+añadir a fila de espera
+
+consultar ficha
+añadir/eliminar/modificar ficha
+
+*/
+void consultafilas(ListQueue *urgencia, ListQueue *normal) // imprime al paciente que ahora le toca
+{
+    if ((*urgencia).empty() == true)
+    {
+        std::cout << (*normal).front() << "\n";
+
+        (*normal).dequeue();
+    }
+    else
+    {
+
+        std::cout << (*urgencia).front() << "\n";
+        (*urgencia).dequeue();
+    }
+}
+
+void ingresofilaespera(ListQueue *urgencia, ListQueue *normal) // clase que añade a alguien a la fila de espera
+{
+    elemento_fila rut;
+    int ingresofila, turno;
+
+    std::cout << "Ingrese nombre y apellido junto de paciente" << "\n";
+
+    std::cin >> rut;
+    fflush(stdin); // limpia buffer
+
+    std::cout << "Ingrese a que fila lo desea enviar" << "\n";
+
+    std::cout << "1. Atencion Normal" << "\n";
+    std::cout << "2. Atencion de Urgencia" << "\n";
+
+    std::cin >> ingresofila;
+    fflush(stdin); // limpia buffer
+    if (ingresofila == 1)
+    {
+        (*normal).enqueue(rut);
+    }
+    else
+        (*urgencia).enqueue(rut);
+}
+
 int main()
 {
     HashEncadenado guardadodeficha; // tabla donde se van a guardar las fichas
     ListQueue normal, urgencia;     // fila de urgencia y la fila normal
+    
     int ingreso;
 
     // variables fila
@@ -60,45 +113,12 @@ int main()
             {
                 switch (turno)
                 {
-                case 2: // Ingreso de pacientes
+                case 1: // quien debe pasar siguiente
 
-                    std::cout << "Ingrese rut paciente" << "\n";
-
-                    std::cin >> rut;
-                    fflush(stdin); // limpia buffer
-
-                    std::cout << "Ingrese a que fila lo desea enviar" << "\n";
-
-                    std::cout << "1. Atencion Normal" << "\n";
-                    std::cout << "2. Atencion de Urgencia" << "\n";
-
-                    std::cin >> ingresofila;
-                    fflush(stdin); // limpia buffer
-                    if (ingresofila == 1)
-                    {
-                        normal.enqueue(rut);
-                    }
-                    else
-                        urgencia.enqueue(rut);
-
+                    consultafilas(&urgencia, &normal);//pasa por referncia porque es una función
                     break;
-                case 1: // quien debe pasar
-                    if (normal.empty()!=false)
-                    {
-                        if (urgencia.empty() == true)
-                        {
-                            std::cout << normal.front() << "\n";
-
-                            normal.dequeue();
-                        }
-                        else
-                        {
-
-                            std::cout << urgencia.front() << "\n";
-                            urgencia.dequeue();
-                        }
-                    }else 
-                    std::cout << "No hay pacientes en fila"<<"\n";
+                case 2: // Ingreso de pacientes
+                    ingresofilaespera(&urgencia, &normal);//pasa por referencia porque es una función
 
                     break;
                 default:
