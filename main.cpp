@@ -30,7 +30,7 @@ void consultafilas(ListQueue *urgencia, ListQueue *normal) // imprime al pacient
                   << (*urgencia).front() << "\n\n";
         (*urgencia).dequeue();
     }
-    else//caso fila vacia
+    else // caso fila vacia
     {
         std::cout << "\n"
                   << "No hay personas en espera" << "\n\n";
@@ -61,7 +61,23 @@ void ingresofilaespera(ListQueue *urgencia, ListQueue *normal) // funcion que a�
     else
         (*urgencia).enqueue(rut);
 }
-void printficha(element_t ficha) // Función para printear ficha
+void consultaficha(HashEncadenado fichasguardadas, key_tablahash rutk) //funcion para consultar fichas
+{
+    
+    element_tablahash fichaaux;//ficha auxiliar
+    
+    std::cout << "Ingrese rut sin digito verificador ni puntos " << "\n";
+    std::cin >> rutk;
+    fflush(stdin); // limpia buffer
+    fichaaux = fichasguardadas.find(rutk);
+    if (fichaaux.key != 0) // Si no encuentra la ficha devuelve una ficha sin rellenar de rut 0
+
+        printficha(fichaaux);
+    else
+        std::cout << "No se encontro ficha" << "\n";
+}
+
+void printficha(element_tablahash ficha) // Función para printear ficha
 {
     std::cout << "Rut:" << "\n"; // imprime rut
 
@@ -91,10 +107,10 @@ int main()
     int ingresofila, turno;
 
     // variables fichas
-    element_t fichaaux;
-    element_t fichaaux2;
+    element_tablahash fichaaux;
+    element_tablahash fichaaux2;
     int ingresoficha;
-    key_t rutk; // llave a ingresar para posicion
+    key_tablahash rutk; // llave a ingresar para posicion
     int modificar;
     std::cout << "Bienvenido" << "\n";
     do // se repite hasta que salga
@@ -109,7 +125,7 @@ int main()
         fflush(stdin); // limpia buffer
         switch (ingreso)
         {
-        case 1:
+        case 1: // FILA
 
             std::cout << "Ingrese que desea hacer" << "\n";
             std::cout << "1. Ver quien debe pasar" << "\n";
@@ -148,15 +164,6 @@ int main()
                     {
                     case 1: // consulta ficha
 
-                        std::cout << "Ingrese rut sin digito " << "\n";
-                        std::cin >> rutk;
-                        fflush(stdin); // limpia buffer
-                        fichaaux2 = guardadodeficha.find(rutk);
-                        if (fichaaux2.key != 0) // Si no encuentra la ficha devuelve una ficha sin rellenar de rut 0
-
-                            printficha(fichaaux2);
-                        else
-                            std::cout << "No se encontro ficha" << "\n";
                         break;
                     case 2: // ingreso/modifica/elimina ficha
 

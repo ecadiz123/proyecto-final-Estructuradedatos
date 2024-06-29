@@ -12,14 +12,14 @@ HashEncadenado:: HashEncadenado(){
 }
 HashEncadenado::~HashEncadenado(){
 
-element_t *borrador;
+element_tablahash *borrador;
 int i=0;
 while (_size!=0)
 {
    _container[i];
    if (_container[i]->next!=NULL)//si hay lista en el espacio
    {
-    element_t *borradoraux=NULL;//se va a usar un aux para borrar
+    element_tablahash *borradoraux=NULL;//se va a usar un aux para borrar
     borrador=_container[i];//borrador apunta al primero que esta en arreglo
     while(borrador->next!=NULL)//borra todo menos el ultimo de la lista
     {
@@ -46,7 +46,7 @@ while (_size!=0)
 
 
 }
-int HashEncadenado :: hash(key_t k)//función hash
+int HashEncadenado :: hash(key_tablahash k)//función hash
 {
     return  k%MAX;
 }
@@ -61,23 +61,23 @@ return false;
 int HashEncadenado::size(){
 return _size;
 }
-element_t HashEncadenado::find(key_t k)//función de busqueda
+element_tablahash HashEncadenado::find(key_tablahash k)//función de busqueda
 
 {
 
-element_t *lugararreglo=_container[hash(k)];
+element_tablahash *lugararreglo=_container[hash(k)];
 
 
 if (lugararreglo==NULL)//caso donde no se encontró ficha
 {
-    element_t vacio;
+    element_tablahash vacio;
     vacio.key=0;
     return vacio; ;// retorna una ficha sin rellenar de key 0
 
 }else//caso donde está en el arreglo ahora hay que buscar en la fila.
 {
 
-element_t *recorredor=lugararreglo;
+element_tablahash *recorredor=lugararreglo;
 while (recorredor!=NULL)
 {
     if (k=recorredor->key)
@@ -95,14 +95,14 @@ while (recorredor!=NULL)
 
 
 }
-void HashEncadenado::insert(element_t e)//funcion de insertar
+void HashEncadenado::insert(element_tablahash e)//funcion de insertar
 {
     int posicion = hash(e.key);
 
 
     if (_container[posicion]==NULL)
     {
-        element_t *l=(element_t*)malloc(sizeof(element_t));
+        element_tablahash *l=(element_tablahash*)malloc(sizeof(element_tablahash));
         *l=e;
         l->next=NULL;
         _container[posicion]=l;
@@ -110,7 +110,7 @@ void HashEncadenado::insert(element_t e)//funcion de insertar
     }else{
 
         
-        element_t *l=(element_t*)malloc(sizeof(element_t));
+        element_tablahash *l=(element_tablahash*)malloc(sizeof(element_tablahash));
        *l=e;
         l->next =  _container[posicion];
         _container[posicion] = l;
@@ -121,15 +121,15 @@ void HashEncadenado::insert(element_t e)//funcion de insertar
     }
     
 }
-void HashEncadenado::remove(key_t k)//función de eliminar
+void HashEncadenado::remove(key_tablahash k)//función de eliminar
 {
     int indicearreglo=hash(k);
-    element_t *pos=_container[indicearreglo];//posicion en el arreglo
+    element_tablahash *pos=_container[indicearreglo];//posicion en el arreglo
     if(pos!=NULL)//caso donde hay elemento en el arreglo, si no hay, simplemente no hace nada
     {
 
         //no se usa find y se recorre independiente para tener un puntero disponible que apunte al anterior ya que la tabla usa fila y no lista.
-            element_t *anterior=NULL,*borrando=pos;
+            element_tablahash *anterior=NULL,*borrando=pos;
             while ((*borrando).key!=k)//no recorre mientras la llave corresponda a la que se quiere buscar.
             {
                 anterior=borrando;
