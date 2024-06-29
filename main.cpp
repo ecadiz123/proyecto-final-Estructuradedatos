@@ -115,6 +115,19 @@ void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva 
     fflush(stdin);
     (*fichasguardadas).insert(fichaaux);
 }
+void eliminaficha(HashEncadenado *fichas)// funcion para eliminar fichas
+{
+
+key_tablahash rut;
+ std::cout << "Ingrese Rut sin digito verificador" << "\n";
+ std::cin >>  rut;
+ fflush(stdin);
+ (*fichas).remove(rut);
+
+ std::cout << "Se ha eliminado ficha de rut: " << rut<< "\n";
+
+
+}
 int main()
 {
     HashEncadenado fichas;      // tabla donde se van a guardar las fichas
@@ -127,7 +140,7 @@ int main()
     int ingresofila, turno;
 
     // variables fichas
-    int ingresoficha;
+    int inputficha;
     key_tablahash rutk; // llave a ingresar para posicion
     int modificar;
     std::cout << "Bienvenido" << "\n";
@@ -174,11 +187,11 @@ int main()
 
                 std::cout << "1. Consultar ficha" << "\n";
                 std::cout << "2. Ingresar/modificar/eliminar ficha" << "\n";
-                std::cin >> ingresoficha;
+                std::cin >> inputficha;
                 fflush(stdin); // limpia buffer
                 {
 
-                    switch (ingresoficha)
+                    switch (inputficha)
                     {
                     case 1: // consulta ficha
                         std::cout << "Ingrese rut sin digito verificador ni puntos " << "\n";
@@ -199,9 +212,9 @@ int main()
                         case 1: // Ingresar ficha
                             nuevaficha(&fichas);
                             break;
-                        case 2:
+                        case 2:// Eliminar ficha
                             break;
-                        case 3:
+                        case 3:// Modificar ficha
                             break;
                         default:
                             break;

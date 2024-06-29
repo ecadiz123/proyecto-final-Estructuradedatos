@@ -124,7 +124,7 @@ void HashEncadenado::insert(element_tablahash e)//funcion de insertar
 void HashEncadenado::remove(key_tablahash k)//función de eliminar
 {
     int indicearreglo=hash(k);
-    element_tablahash *pos=_container[indicearreglo];//posicion en el arreglo
+    element_tablahash *pos=_container[indicearreglo];//puntero hacia elemento que esta en esa posicion
     if(pos!=NULL)//caso donde hay elemento en el arreglo, si no hay, simplemente no hace nada
     {
 
