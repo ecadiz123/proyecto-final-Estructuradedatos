@@ -107,10 +107,10 @@ void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva 
     std::cin >> fichaaux.digitoverificador;
     fflush(stdin);
     std::cout << "Ingrese motivo de consulta:" << "\n";
-    getline(std::cin,fichaaux.motivoconsulta);//get line es una funcion de libreria <string>, obtiene toda la linea en vez de una palabra
+    getline(std::cin, fichaaux.motivoconsulta); // get line es una funcion de libreria <string>, obtiene toda la linea en vez de una palabra
     fflush(stdin);
     std::cout << "Ingrese antecedentes dentales" << "\n";
-    getline(std::cin,fichaaux.antecedentesdentales);
+    getline(std::cin, fichaaux.antecedentesdentales);
     fflush(stdin);
     std::cout << "Ingrese piezas a tratar" << "\n";
     std::cin >> fichaaux.piezaatratar;
@@ -204,7 +204,7 @@ int main()
             std::cin >> turno;
             fflush(stdin); // limpia buffer
 
-            {
+            
                 switch (turno)
                 {
                 case 1: // quien debe pasar siguiente
@@ -229,12 +229,16 @@ int main()
                 std::cin >> inputficha;
                 fflush(stdin); // limpia buffer
                 {
-                    if (inputficha == 1)
+                    switch (inputficha)
+                    {
+
+                    case 1:
                     { // consulta ficha
 
                         consultaficha(&fichas);
                     }
-                    else if (inputficha == 2)
+                    break;
+                    case 2:
                     { // ingreso/modifica/elimina ficha
 
                         std::cout << "Ingrese que desea hacer" << "\n";
@@ -258,10 +262,15 @@ int main()
                             // para modificar
                             modificarficha(&fichas);
                             break;
+
                         default:
                             std::cout << "Error no siguio instrucciones" << "\n";
                             break;
                         }
+                    }
+                    default:
+                        std::cout << "Error no siguio instrucciones" << "\n";
+                        break;
                     }
                 }
 
@@ -275,7 +284,7 @@ int main()
                 std::cout << "Error no siguio instrucciones" << "\n";
 
                 break;
-            }
+            
         }
 
     } while (ingreso != 3);
