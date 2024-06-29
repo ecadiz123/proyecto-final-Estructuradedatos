@@ -213,6 +213,8 @@ int main()
                             nuevaficha(&fichas);
                             break;
                         case 2:// Eliminar ficha
+                            
+                            eliminaficha(&fichas);
                             break;
                         case 3:// Modificar ficha
                             break;
