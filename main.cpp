@@ -2,8 +2,6 @@
 #include "queue/ListQueue.hpp"
 #include <iostream>
 
-
-
 /*
 4 funciones de la app
 consultar fila de espera
@@ -15,17 +13,27 @@ añadir/eliminar/modificar ficha
 */
 void consultafilas(ListQueue *urgencia, ListQueue *normal) // imprime al paciente que ahora le toca
 {
-    if ((*urgencia).empty() == true)
+    if ((*urgencia).empty() == true) // Caso donde no hay urgencia
     {
-        std::cout << (*normal).front() << "\n";
+        std::cout << "\n"
+                  << "Ahora es el turno de:\n"
+                  << (*normal).front() << "\n\n";
 
         (*normal).dequeue();
     }
-    else
+    else if ((*urgencia).empty() != false) // Caso donde hay urgencia
+
     {
 
-        std::cout << (*urgencia).front() << "\n";
+        std::cout << "\n"
+                  << "Ahora es el turno de:\n"
+                  << (*urgencia).front() << "\n\n";
         (*urgencia).dequeue();
+    }
+    else//caso fila vacia
+    {
+        std::cout << "\n"
+                  << "No hay personas en espera" << "\n\n";
     }
 }
 
@@ -34,7 +42,7 @@ void ingresofilaespera(ListQueue *urgencia, ListQueue *normal) // clase que aña
     elemento_fila rut;
     int ingresofila, turno;
 
-    std::cout << "Ingrese nombre y apellido junto de paciente" << "\n";
+    std::cout << "Ingrese rut paciente" << "\n";
 
     std::cin >> rut;
     fflush(stdin); // limpia buffer
@@ -75,7 +83,7 @@ int main()
 {
     HashEncadenado guardadodeficha; // tabla donde se van a guardar las fichas
     ListQueue normal, urgencia;     // fila de urgencia y la fila normal
-    
+
     int ingreso;
 
     // variables fila
@@ -115,10 +123,10 @@ int main()
                 {
                 case 1: // quien debe pasar siguiente
 
-                    consultafilas(&urgencia, &normal);//pasa por referncia porque es una función
+                    consultafilas(&urgencia, &normal); // pasa por referncia porque es una función
                     break;
-                case 2: // Ingreso de pacientes
-                    ingresofilaespera(&urgencia, &normal);//pasa por referencia porque es una función
+                case 2:                                    // Ingreso de pacientes
+                    ingresofilaespera(&urgencia, &normal); // pasa por referencia porque es una función
 
                     break;
                 default:
