@@ -13,7 +13,7 @@ struct element_tablahash // Datos de la ficha
 
     std::string motivodeconsulta;
     std::string antecedentesdentales;
-    int piezasatratar;//las piezas dentales tienen numero
+    int piezaatratar;//las piezas dentales tienen numero
     element_tablahash *next;
 };
 

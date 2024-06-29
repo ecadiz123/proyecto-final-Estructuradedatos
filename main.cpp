@@ -78,7 +78,7 @@ void printficha(element_tablahash ficha) // Función para printear ficha
 
     std::cout << "Piezas a tratar:" << "\n";
 
-    std::cout << ficha.piezasatratar << "\n";
+    std::cout << ficha.piezaatratar << "\n";
 }
 void consultaficha(HashEncadenado fichasguardadas, key_tablahash rutk) // funcion para consultar fichas
 {
@@ -111,22 +111,59 @@ void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva 
     std::cin >> fichaaux.antecedentesdentales;
     fflush(stdin);
     std::cout << "Ingrese piezas a tratar" << "\n";
-    std::cin >> fichaaux.piezasatratar;
+    std::cin >> fichaaux.piezaatratar;
     fflush(stdin);
     (*fichasguardadas).insert(fichaaux);
 }
-void eliminaficha(HashEncadenado *fichas)// funcion para eliminar fichas
+void eliminaficha(HashEncadenado *fichas) // funcion para eliminar fichas
 {
 
-key_tablahash rut;
- std::cout << "Ingrese Rut sin digito verificador" << "\n";
- std::cin >>  rut;
- fflush(stdin);
- (*fichas).remove(rut);
+    key_tablahash rut;
+    std::cout << "Ingrese Rut sin digito verificador" << "\n";
+    std::cin >> rut;
+    fflush(stdin);
+    (*fichas).remove(rut);
 
- std::cout << "Se ha eliminado ficha de rut: " << rut<< "\n";
+    std::cout << "Se ha eliminado ficha de rut: " << rut << "\n";
+}
 
+void modificarficha(HashEncadenado *fichas)
+{
 
+    // primero preguntar que ficha desea cambiar
+    key_tablahash rut;
+
+    std::cout << "Ingrese Rut sin digito verificador de ficha a modificar" << "\n";
+    std::cin >> rut;
+    element_tablahash fichaaux;
+
+    fichaaux = (*fichas).find(rut); // se copian elementos a ficha aux
+    (*fichas).remove(rut);          // ahora se elimina ficha vieja de tabla
+    std::cout << "Ingrese numero de elemento a modificar" << "\n";
+    std::cout << "1. Pieza a tratar" << "\n";
+
+    std::cout << "Ingrese numero de elemento a modificar" << "\n";
+
+    int modificar;
+    std::cin >> modificar;
+    fflush(stdin);
+    switch (modificar)
+    {
+    case 1:
+
+        std::cout << "Pieza a tratar de ficha:" << fichaaux.piezaatratar << "\n";
+
+        std::cout << "Ingrese nueva pieza" << "\n";
+
+        std::cin >> fichaaux.piezaatratar;
+        fflush(stdin);
+        break;
+
+    default:
+        break;
+    }
+    // ingresar nueva ficha modificada
+    (*fichas).insert(fichaaux);
 }
 int main()
 {
@@ -181,7 +218,7 @@ int main()
                     break;
                 }
                 break;
-            case 2:
+            case 2://FICHAS (HASH)
 
                 std::cout << "Ingrese que desea hacer" << "\n";
 
@@ -196,6 +233,7 @@ int main()
                     case 1: // consulta ficha
                         std::cout << "Ingrese rut sin digito verificador ni puntos " << "\n";
                         std::cin >> rutk;
+                        fflush(stdin); // limpia buffer
                         consultaficha(fichas, rutk);
                         break;
                     case 2: // ingreso/modifica/elimina ficha
@@ -212,11 +250,13 @@ int main()
                         case 1: // Ingresar ficha
                             nuevaficha(&fichas);
                             break;
-                        case 2:// Eliminar ficha
-                            
+                        case 2: // Eliminar ficha
+
                             eliminaficha(&fichas);
                             break;
-                        case 3:// Modificar ficha
+                        case 3: // Modificar ficha
+                            // para modificar
+                            modificarficha(&fichas);
                             break;
                         default:
                             break;
@@ -229,7 +269,8 @@ int main()
 
                 break;
             case 3:
-                return 0;
+            //no pasa nada, es el caso para salir y eso ocurre en el while
+            ;
             default:
 
                 std::cout << "Error no siguio instrucciones" << "\n";
