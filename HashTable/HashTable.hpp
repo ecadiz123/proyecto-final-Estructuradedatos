@@ -11,8 +11,6 @@ struct element_tablahash // Datos de la ficha
     char digitoverificador;
     key_tablahash key; //va a ser el rut
 
-    std::string motivodeconsulta;
-    std::string antecedentesdentales;
     int piezaatratar;//las piezas dentales tienen numero
     element_tablahash *next;
 };

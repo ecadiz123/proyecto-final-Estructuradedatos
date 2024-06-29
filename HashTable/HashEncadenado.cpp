@@ -68,23 +68,23 @@ element_tablahash HashEncadenado::find(key_tablahash k)//función de busqueda
 element_tablahash *lugararreglo=_container[hash(k)];
 
 
-if (lugararreglo==NULL)//caso donde no se encontró ficha
+if (lugararreglo==NULL)//caso donde no se encontró ficha en la posición
 {
     element_tablahash vacio;
     vacio.key=0;
     return vacio; ;// retorna una ficha sin rellenar de key 0
 
-}else//caso donde está en el arreglo ahora hay que buscar en la fila.
+}else
 {
-
+//caso donde está en el arreglo ahora hay que buscar en la fila.
 element_tablahash *recorredor=lugararreglo;
-while (recorredor!=NULL)
+while (recorredor!=NULL)//es null cuando llega al final de recorrer
 {
     if (k=recorredor->key)
-    {
+    {   //si lo que apunta recorredor tiene el key deseado, devuelve lo que apunta
         return *recorredor;
     }
-    recorredor= (*recorredor).next;  
+    recorredor= (*recorredor).next;  //si no ocurre va al siguiente elemento
 
 
 

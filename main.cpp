@@ -66,33 +66,30 @@ void printficha(element_tablahash ficha) // Función para printear ficha
 {
     std::cout << "Rut:" << "\n"; // imprime rut
 
-    std::cout << ficha.key << "-" << char(ficha.digitoverificador) << "\n";
-
-    std::cout << "Motivo de Consulta:" << "\n"; // imprime motivo de consulta
-
-    std::cout << ficha.motivodeconsulta << "\n";
-
-    std::cout << "Antecedentes Dentales:" << "\n";
-
-    std::cout << ficha.antecedentesdentales << "\n";
+    std::cout << ficha.key << "-" << ficha.digitoverificador << "\n";
 
     std::cout << "Piezas a tratar:" << "\n";
 
     std::cout << ficha.piezaatratar << "\n";
+    fflush(stdin);
 }
-void consultaficha(HashEncadenado fichasguardadas, key_tablahash rutk) // funcion para consultar fichas
+void consultaficha(HashEncadenado *fichasguardadas) // funcion para consultar fichas
 {
 
     element_tablahash fichaaux; // ficha auxiliar
-
+    key_tablahash rutk;
+    std::cout << "Ingrese rut sin digito verificador ni puntos " << "\n";
+    std::cin >> rutk;
     fflush(stdin); // limpia buffer
-    fichaaux = fichasguardadas.find(rutk);
-    if (fichaaux.key != 0) // Si no encuentra la ficha, find devuelve una ficha sin rellenar de rut 0
-        // caso donde encuentra ficha
+    fichaaux = (*fichasguardadas).find(rutk);
+    if (fichaaux.key != 0)
+    { // caso donde hay ficha
         printficha(fichaaux);
+    }
     else
-        // Caso donde no encuentra ficha
+    { // Caso donde no encuentra ficha es decir find devuelve key=0
         std::cout << "No se encontro ficha" << "\n";
+    }
 }
 void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva ficha a guardar
 {
@@ -103,12 +100,6 @@ void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva 
     fflush(stdin);
     std::cout << "Ingrese digito verificador" << "\n";
     std::cin >> fichaaux.digitoverificador;
-    fflush(stdin);
-    std::cout << "Ingrese motivo de consulta" << "\n";
-    std::cin >> fichaaux.motivodeconsulta;
-    fflush(stdin);
-    std::cout << "Ingrese antecedentes dentales" << "\n";
-    std::cin >> fichaaux.antecedentesdentales;
     fflush(stdin);
     std::cout << "Ingrese piezas a tratar" << "\n";
     std::cin >> fichaaux.piezaatratar;
@@ -177,9 +168,9 @@ int main()
     int ingresofila, turno;
 
     // variables fichas
-    int inputficha;
+    int inputficha;     // input switch al trabajar con ficha
     key_tablahash rutk; // llave a ingresar para posicion
-    int modificar;
+    int modificar;      // input switch al querer modificar fichas
     std::cout << "Bienvenido" << "\n";
     do // se repite hasta que salga
     {
@@ -218,7 +209,7 @@ int main()
                     break;
                 }
                 break;
-            case 2://FICHAS (HASH)
+            case 2: // FICHAS (HASH)
 
                 std::cout << "Ingrese que desea hacer" << "\n";
 
@@ -227,16 +218,13 @@ int main()
                 std::cin >> inputficha;
                 fflush(stdin); // limpia buffer
                 {
+                    if (inputficha == 1)
+                    { // consulta ficha
 
-                    switch (inputficha)
-                    {
-                    case 1: // consulta ficha
-                        std::cout << "Ingrese rut sin digito verificador ni puntos " << "\n";
-                        std::cin >> rutk;
-                        fflush(stdin); // limpia buffer
-                        consultaficha(fichas, rutk);
-                        break;
-                    case 2: // ingreso/modifica/elimina ficha
+                        consultaficha(&fichas);
+                    }
+                    else if (inputficha == 2)
+                    { // ingreso/modifica/elimina ficha
 
                         std::cout << "Ingrese que desea hacer" << "\n";
 
@@ -245,6 +233,7 @@ int main()
                         std::cout << "3. Modificar Ficha" << "\n";
                         std::cin >> modificar;
                         fflush(stdin); // limpia buffer
+
                         switch (modificar)
                         {
                         case 1: // Ingresar ficha
@@ -259,18 +248,17 @@ int main()
                             modificarficha(&fichas);
                             break;
                         default:
+                            std::cout << "Error no siguio instrucciones" << "\n";
                             break;
                         }
-                        break;
-                    default:
-                        break;
                     }
                 }
 
                 break;
             case 3:
-            //no pasa nada, es el caso para salir y eso ocurre en el while
-            ;
+                // no pasa nada solo termina ejecucion
+                return 0;
+                ;
             default:
 
                 std::cout << "Error no siguio instrucciones" << "\n";
