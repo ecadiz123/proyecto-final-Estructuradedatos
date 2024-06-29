@@ -1,6 +1,5 @@
 #ifndef QUEUEADT_H
 #define QUEUEADT_H
-#include <string>
 typedef int elemento_fila;// se va a usar el rut para designar a la persona
 
 class QueueADT {
