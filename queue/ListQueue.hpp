@@ -1,7 +1,7 @@
 #include "QueueADT.hpp"
-#include <string>
+
 struct node{
-  std::string e;
+  elemento_t e;
 
   node *next;
 };
@@ -18,7 +18,7 @@ class ListQueue : public QueueADT{
   int size();
   elemento_t front();
   elemento_t back();
-  void enqueue(elemento_t);
+  void enqueue(elemento_t el);
   void dequeue();
   
 };
