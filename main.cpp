@@ -107,10 +107,10 @@ void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva 
     std::cin >> fichaaux.digitoverificador;
     fflush(stdin);
     std::cout << "Ingrese motivo de consulta:" << "\n";
-    std::cin >> fichaaux.motivoconsulta;
+    getline(std::cin,fichaaux.motivoconsulta);//get line es una funcion de libreria <string>, obtiene toda la linea en vez de una palabra
     fflush(stdin);
     std::cout << "Ingrese antecedentes dentales" << "\n";
-    std::cin >> fichaaux.antecedentesdentales;
+    getline(std::cin,fichaaux.antecedentesdentales);
     fflush(stdin);
     std::cout << "Ingrese piezas a tratar" << "\n";
     std::cin >> fichaaux.piezaatratar;
