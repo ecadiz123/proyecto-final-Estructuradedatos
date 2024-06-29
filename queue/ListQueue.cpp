@@ -36,7 +36,7 @@ int ListQueue::size()
 
   return _size;
 }
-elemento_t ListQueue::front()
+elemento_fila ListQueue::front()
 { // consulta elemnto de al frente
 
   if (_front != NULL)
@@ -44,10 +44,10 @@ elemento_t ListQueue::front()
     return (*_front).e;
   }
   else
-    return "0"; // Devuelve string con valor 0
+    return 0; // Devuelve string con valor 0
 }
 
-elemento_t ListQueue::back()
+elemento_fila ListQueue::back()
 { // consulta elemento de al final
 
   if (_back != NULL)
@@ -55,9 +55,9 @@ elemento_t ListQueue::back()
     return (*_back).e;
   }
   else
-    return "0"; // Devuelve string con valor 0
+    return 0; // Devuelve string con valor 0
 }
-void ListQueue::enqueue(elemento_t el) // ingresa elemento a la fila
+void ListQueue::enqueue(elemento_fila el) // ingresa elemento a la fila
 {
   // crear nodo
   node *nuevo; // puntero

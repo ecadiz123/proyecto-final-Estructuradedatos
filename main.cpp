@@ -26,7 +26,7 @@ int main()
     int ingreso;
 
     // variables fila
-    std::string nombre;
+    elemento_fila rut;
     int ingresofila, turno;
 
     // variables fichas
@@ -64,7 +64,7 @@ int main()
 
                     std::cout << "Ingrese nombre y apellido junto de paciente" << "\n";
 
-                    std::cin >> nombre;
+                    std::cin >> rut;
                     fflush(stdin); // limpia buffer
 
                     std::cout << "Ingrese a que fila lo desea enviar" << "\n";
@@ -76,10 +76,10 @@ int main()
                     fflush(stdin); // limpia buffer
                     if (ingresofila == 1)
                     {
-                        normal.enqueue(nombre);
+                        normal.enqueue(rut);
                     }
                     else
-                        urgencia.enqueue(nombre);
+                        urgencia.enqueue(rut);
 
                     break;
                 case 1: // quien debe pasar
