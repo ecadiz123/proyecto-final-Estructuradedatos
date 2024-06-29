@@ -80,25 +80,45 @@ void printficha(element_tablahash ficha) // Función para printear ficha
 
     std::cout << ficha.piezasatratar << "\n";
 }
-void consultaficha(HashEncadenado fichasguardadas, key_tablahash rutk) //funcion para consultar fichas
+void consultaficha(HashEncadenado fichasguardadas, key_tablahash rutk) // funcion para consultar fichas
 {
-    
-    element_tablahash fichaaux;//ficha auxiliar
-    
-    std::cout << "Ingrese rut sin digito verificador ni puntos " << "\n";
-    std::cin >> rutk;
+
+    element_tablahash fichaaux; // ficha auxiliar
+
     fflush(stdin); // limpia buffer
     fichaaux = fichasguardadas.find(rutk);
-    if (fichaaux.key != 0) // Si no encuentra la ficha devuelve una ficha sin rellenar de rut 0
-
+    if (fichaaux.key != 0) // Si no encuentra la ficha, find devuelve una ficha sin rellenar de rut 0
+        // caso donde encuentra ficha
         printficha(fichaaux);
     else
+        // Caso donde no encuentra ficha
         std::cout << "No se encontro ficha" << "\n";
+}
+void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva ficha a guardar
+{
+    element_tablahash fichaaux;
+    // se volvio requerimiento usar fflush para limpiar el buffer de entrada al trabajar con strings
+    std::cout << "Ingrese Rut sin digito verificador" << "\n";
+    std::cin >> fichaaux.key;
+    fflush(stdin);
+    std::cout << "Ingrese digito verificador" << "\n";
+    std::cin >> fichaaux.digitoverificador;
+    fflush(stdin);
+    std::cout << "Ingrese motivo de consulta" << "\n";
+    std::cin >> fichaaux.motivodeconsulta;
+    fflush(stdin);
+    std::cout << "Ingrese antecedentes dentales" << "\n";
+    std::cin >> fichaaux.antecedentesdentales;
+    fflush(stdin);
+    std::cout << "Ingrese piezas a tratar" << "\n";
+    std::cin >> fichaaux.piezasatratar;
+    fflush(stdin);
+    (*fichasguardadas).insert(fichaaux);
 }
 int main()
 {
-    HashEncadenado guardadodeficha; // tabla donde se van a guardar las fichas
-    ListQueue normal, urgencia;     // fila de urgencia y la fila normal
+    HashEncadenado fichas;      // tabla donde se van a guardar las fichas
+    ListQueue normal, urgencia; // fila de urgencia y la fila normal
 
     int ingreso;
 
@@ -107,8 +127,6 @@ int main()
     int ingresofila, turno;
 
     // variables fichas
-    element_tablahash fichaaux;
-    element_tablahash fichaaux2;
     int ingresoficha;
     key_tablahash rutk; // llave a ingresar para posicion
     int modificar;
@@ -163,7 +181,9 @@ int main()
                     switch (ingresoficha)
                     {
                     case 1: // consulta ficha
-
+                        std::cout << "Ingrese rut sin digito verificador ni puntos " << "\n";
+                        std::cin >> rutk;
+                        consultaficha(fichas, rutk);
                         break;
                     case 2: // ingreso/modifica/elimina ficha
 
@@ -177,25 +197,7 @@ int main()
                         switch (modificar)
                         {
                         case 1: // Ingresar ficha
-
-                            // se volvio requerimiento usar fflush para limpiar el buffer de entrada al trabajar con strings
-                            std::cout << "Ingrese Rut sin digito verificador" << "\n";
-                            std::cin >> fichaaux.key;
-                            fflush(stdin);
-                            std::cout << "Ingrese digito verificador" << "\n";
-                            std::cin >> fichaaux.digitoverificador;
-                            fflush(stdin);
-                            std::cout << "Ingrese motivo de consulta" << "\n";
-                            std::cin >> fichaaux.motivodeconsulta;
-                            fflush(stdin);
-                            std::cout << "Ingrese antecedentes dentales" << "\n";
-                            std::cin >> fichaaux.antecedentesdentales;
-                            fflush(stdin);
-                            std::cout << "Ingrese piezas a tratar" << "\n";
-                            std::cin >> fichaaux.piezasatratar;
-                            fflush(stdin);
-                            guardadodeficha.insert(fichaaux);
-
+                            nuevaficha(&fichas);
                             break;
                         case 2:
                             break;
