@@ -33,7 +33,7 @@ int main()
     element_t fichaaux;
     element_t fichaaux2;
     int ingresoficha;
-    key_t rut; // llave a ingresar para posicion
+    key_t rutk; // llave a ingresar para posicion
     int modificar;
     std::cout << "Bienvenido" << "\n";
     do // se repite hasta que salga
@@ -62,7 +62,7 @@ int main()
                 {
                 case 2: // Ingreso de pacientes
 
-                    std::cout << "Ingrese nombre y apellido junto de paciente" << "\n";
+                    std::cout << "Ingrese rut paciente" << "\n";
 
                     std::cin >> rut;
                     fflush(stdin); // limpia buffer
@@ -121,9 +121,9 @@ int main()
                     case 1: // consulta ficha
 
                         std::cout << "Ingrese rut sin digito " << "\n";
-                        std::cin >> rut;
+                        std::cin >> rutk;
                         fflush(stdin); // limpia buffer
-                        fichaaux2 = guardadodeficha.find(rut);
+                        fichaaux2 = guardadodeficha.find(rutk);
                         if (fichaaux2.key != 0) // Si no encuentra la ficha devuelve una ficha sin rellenar de rut 0
 
                             printficha(fichaaux2);

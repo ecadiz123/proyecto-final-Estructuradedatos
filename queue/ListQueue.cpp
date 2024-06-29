@@ -44,7 +44,7 @@ elemento_fila ListQueue::front()
     return (*_front).e;
   }
   else
-    return 0; // Devuelve string con valor 0
+    return 0; // Devuelve rut con valor 0
 }
 
 elemento_fila ListQueue::back()
@@ -55,7 +55,7 @@ elemento_fila ListQueue::back()
     return (*_back).e;
   }
   else
-    return 0; // Devuelve string con valor 0
+    return 0; // Devuelve rut con vvalor 0
 }
 void ListQueue::enqueue(elemento_fila el) // ingresa elemento a la fila
 {
@@ -63,7 +63,7 @@ void ListQueue::enqueue(elemento_fila el) // ingresa elemento a la fila
   node *nuevo; // puntero
 
   nuevo = (node *)malloc(sizeof(node)); //memoria asignada manualmente
-  (*nuevo).e = el;                      // string dentro del nodo se iguala a elemento
+  (*nuevo).e = el;                      // elemento dentro del nodo se iguala a input
   (*nuevo).next = NULL;                 // se inicializa el next en NULL
   if (_front == NULL)                   // front va a ser NULL solo en el caso de una fila vacia.
   {
