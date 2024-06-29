@@ -2,24 +2,7 @@
 #include "queue/ListQueue.hpp"
 #include <iostream>
 
-void printficha(element_t ficha) // Función para printear ficha
-{
-    std::cout << "Rut:" << "\n"; // imprime rut
 
-    std::cout << ficha.key << "-" << char(ficha.digitoverificador) << "\n";
-
-    std::cout << "Motivo de Consulta:" << "\n"; // imprime motivo de consulta
-
-    std::cout << ficha.motivodeconsulta << "\n";
-
-    std::cout << "Antecedentes Dentales:" << "\n";
-
-    std::cout << ficha.antecedentesdentales << "\n";
-
-    std::cout << "Piezas a tratar:" << "\n";
-
-    std::cout << ficha.piezasatratar << "\n";
-}
 
 /*
 4 funciones de la app
@@ -70,7 +53,24 @@ void ingresofilaespera(ListQueue *urgencia, ListQueue *normal) // clase que aña
     else
         (*urgencia).enqueue(rut);
 }
+void printficha(element_t ficha) // Función para printear ficha
+{
+    std::cout << "Rut:" << "\n"; // imprime rut
 
+    std::cout << ficha.key << "-" << char(ficha.digitoverificador) << "\n";
+
+    std::cout << "Motivo de Consulta:" << "\n"; // imprime motivo de consulta
+
+    std::cout << ficha.motivodeconsulta << "\n";
+
+    std::cout << "Antecedentes Dentales:" << "\n";
+
+    std::cout << ficha.antecedentesdentales << "\n";
+
+    std::cout << "Piezas a tratar:" << "\n";
+
+    std::cout << ficha.piezasatratar << "\n";
+}
 int main()
 {
     HashEncadenado guardadodeficha; // tabla donde se van a guardar las fichas
