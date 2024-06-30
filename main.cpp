@@ -13,28 +13,25 @@ añadir/eliminar/modificar ficha
 */
 void consultafilas(ListQueue *urgencia, ListQueue *normal) // imprime al paciente que ahora le toca
 {
-    if ((*urgencia).empty() == true) // Caso donde no hay urgencia
-    {
-        std::cout << "\n"
-                  << "Ahora es el turno de:\n"
-                  << (*normal).front() << "\n\n";
-
-        (*normal).dequeue();
-    }
-    else if ((*urgencia).empty() != false) // Caso donde hay urgencia
-
-    {
-
-        std::cout << "\n"
-                  << "Ahora es el turno de:\n"
-                  << (*urgencia).front() << "\n\n";
-        (*urgencia).dequeue();
-    }
-    else if (normal->empty() == true && urgencia->empty() == true)
-    // caso fila vacia
+    if ((normal->empty() == true) && (urgencia->empty() == true))
     {
         std::cout << "\n"
                   << "No hay personas en espera" << "\n\n";
+    }
+    if (((*urgencia).empty()) != (false))
+    {
+        // Caso donde hay urgencia
+        std::cout << "\n"
+                  << "Ahora es el turno de urgencia:\n"
+                  << (*urgencia).front() << "\n\n";
+        (*urgencia).dequeue();
+    }
+    if (((*urgencia).empty()) == (true))
+    { // Caso donde no hay urgencia
+        std::cout << "\n"
+                  << "Ahora es el turno de:\n"
+                  << (*normal).front() << "\n\n";
+        (*normal).dequeue();
     }
 }
 
@@ -162,11 +159,11 @@ void modificarficha(HashEncadenado *fichas)
         std::cin >> fichaaux.piezaatratar;
         fflush(stdin);
     }
-    else if(modificar==2)
+    else if (modificar == 2)
     {
         std::cout << "Motivo de consulta en ficha:" << fichaaux.motivoconsulta << "\n";
         std::cout << "Ingrese nuevo motivo" << "\n";
-        getline(std::cin,  fichaaux.motivoconsulta);
+        getline(std::cin, fichaaux.motivoconsulta);
         fflush(stdin);
     }
     // ingresar nueva ficha modificada
@@ -190,7 +187,8 @@ int main()
     std::cout << "Bienvenido" << "\n";
     do // se repite hasta que salga
     {
-        std::cout << "\n\n\n"<<"Ingrese que desea hacer" << "\n";
+        std::cout << "\n\n\n"
+                  << "Ingrese que desea hacer" << "\n";
         std::cout << "1.Organizar clientes en espera" << "\n";
         std::cout << "2.Trabajar con fichas" << "\n";
         std::cout << "3. Salir" << "\n";
@@ -213,7 +211,7 @@ int main()
             {
             case 1: // quien debe pasar siguiente
 
-                consultafilas(&urgencia, &normal); // pasa por referncia porque es una función
+                consultafilas(&urgencia, &normal); // pasa por referncia porque asi funciona mejor
                 break;
             case 2:                                    // Ingreso de pacientes
                 ingresofilaespera(&urgencia, &normal); // pasa por referencia porque es una función

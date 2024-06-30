@@ -1,17 +1,20 @@
 #include "QueueADT.hpp"
-
-struct node{
+#include <cstdlib>
+struct node
+{
   elemento_fila e;
 
   node *next;
 };
 
-class ListQueue : public QueueADT{
- private:
-  node *_front;
-  node *_back;
-  int _size;
- public:
+class ListQueue : public QueueADT
+{
+private:
+  node *_front = NULL;
+  node *_back = NULL;
+  int _size = 0;
+
+public:
   ListQueue();
   ~ListQueue();
   bool empty();
@@ -20,5 +23,4 @@ class ListQueue : public QueueADT{
   elemento_fila back();
   void enqueue(elemento_fila);
   void dequeue();
-  
 };

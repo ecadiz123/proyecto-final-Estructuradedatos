@@ -1,6 +1,7 @@
 #ifndef HASH_TABLE_T
 #define HASH_TABLE_T
 #include <string>
+#include <cstdlib>
 typedef int value_t;
 typedef int key_tablahash; // en este caso int portque es el rut sin ultimo digito
 
