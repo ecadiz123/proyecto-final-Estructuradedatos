@@ -102,6 +102,7 @@ void consultaficha(HashEncadenado *fichasguardadas) // funcion para consultar fi
 void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva ficha a guardar
 {
     element_tablahash fichaaux;
+    std::string stringaux,stringaux2;//se va a usar dos string aux para usar el getline
     // se volvio requerimiento usar fflush para limpiar el buffer de entrada al trabajar con strings
     std::cout << "Ingrese Rut sin digito verificador" << "\n";
     std::cin >> fichaaux.key;
@@ -110,11 +111,15 @@ void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva 
     std::cin >> fichaaux.digitoverificador;
     fflush(stdin);
     std::cout << "Ingrese motivo de consulta:" << "\n";
-    getline(std::cin, fichaaux.motivoconsulta); // get line es una funcion de libreria <string>, obtiene toda la linea en vez de una palabra
+    getline(std::cin, stringaux); // get line es una funcion de libreria <string>, obtiene toda la linea en vez de una palabra
     fflush(stdin);
+    stringaux.copy(fichaaux.motivoconsulta,stringaux.length(),0);//metodo copy de string transfiere toda la string a un arreglo char
     std::cout << "Ingrese antecedentes dentales" << "\n";
-    getline(std::cin, fichaaux.antecedentesdentales);
+    getline(std::cin,stringaux2);
     fflush(stdin);
+    stringaux2.copy(fichaaux.antecedentesdentales,stringaux2.length(),0);//metodo copy de string transfiere toda la string a un arreglo char
+    std::cout << "Ingrese antecedentes dentales" << "\n";
+
     std::cout << "Ingrese pieza a tratar" << "\n";
     std::cin >> fichaaux.piezaatratar;
     fflush(stdin);
@@ -135,6 +140,7 @@ void eliminaficha(HashEncadenado *fichas) // funcion para eliminar fichas
 void modificarficha(HashEncadenado *fichas)
 {
 
+       std::string stringaux;//string auxiliar para los getline
     // primero preguntar que ficha desea cambiar
     key_tablahash rut;
 
@@ -163,16 +169,17 @@ void modificarficha(HashEncadenado *fichas)
         fflush(stdin);
     }
     else if (modificar == 2)
-    {
-        std::cout << "Motivo de consulta en ficha:" << fichaaux.motivoconsulta << "\n";
+        {std::cout << "Motivo de consulta en ficha:" << fichaaux.motivoconsulta << "\n";
         std::cout << "Ingrese nuevo motivo" << "\n";
-        getline(std::cin, fichaaux.motivoconsulta);
+        getline(std::cin, stringaux);
         fflush(stdin);
+        stringaux.copy(fichaaux.motivoconsulta,stringaux.length(),0);//metodo copy de string transfiere toda la string a un arreglo char 
     }else if (modificar == 3)
-    {
+    {   
         std::cout << "Antecedentes ingresados: " << fichaaux.antecedentesdentales << "\n";
         std::cout << "Ingrese antecedente anterior junto con nuevo: " << "\n";
-        getline(std::cin, fichaaux.motivoconsulta);
+        getline(std::cin, stringaux);
+        stringaux.copy(fichaaux.motivoconsulta,stringaux.length(),0);//metodo copy de string transfiere toda la string a un arreglo char
         fflush(stdin);
     }
     
@@ -224,7 +231,7 @@ int main()
                 consultafilas(&urgencia, &normal); // pasa por referncia porque asi funciona mejor
                 break;
             case 2:                                    // Ingreso de pacientes
-                ingresofilaespera(&urgencia, &normal); // pasa por referencia porque es una función
+                ingresofilaespera(&urgencia, &normal); // pasa por referencia porque edita algo
 
                 break;
             default:
