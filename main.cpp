@@ -171,7 +171,7 @@ void modificarficha(HashEncadenado *fichas)
     }else if (modificar == 3)
     {
         std::cout << "Antecedentes ingresados: " << fichaaux.antecedentesdentales << "\n";
-        std::cout << " Ingrese antecedente anterior junto con nuevo: " << "\n";
+        std::cout << "Ingrese antecedente anterior junto con nuevo: " << "\n";
         getline(std::cin, fichaaux.motivoconsulta);
         fflush(stdin);
     }
