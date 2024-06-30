@@ -30,7 +30,7 @@ void consultafilas(ListQueue *urgencia, ListQueue *normal) // imprime al pacient
                   << (*urgencia).front() << "\n\n";
         (*urgencia).dequeue();
     }
-    else if (normal->empty()==true && urgencia->empty()==true)
+    else if (normal->empty() == true && urgencia->empty() == true)
     // caso fila vacia
     {
         std::cout << "\n"
@@ -65,17 +65,20 @@ void ingresofilaespera(ListQueue *urgencia, ListQueue *normal) // funcion que a�
 
 void printficha(element_tablahash ficha) // Funci처n para printear ficha
 {
-    std::cout << "Rut:" << "\n"; 
+    std::cout << "Rut:" << "\n";
 
     std::cout << ficha.key << "-" << ficha.digitoverificador << "\n";
 
-    std::cout << "\n"<<"Motivo de consulta" << "\n";
+    std::cout << "\n"
+              << "Motivo de consulta" << "\n";
 
     std::cout << ficha.motivoconsulta << "\n";
-    std::cout << "\n"<<"Antecedentes dentales" << "\n";
+    std::cout << "\n"
+              << "Antecedentes dentales" << "\n";
 
     std::cout << ficha.antecedentesdentales << "\n";
-    std::cout << "\n"<<"Pieza a tratar:" << "\n";
+    std::cout << "\n"
+              << "Pieza a tratar:" << "\n";
 
     std::cout << ficha.piezaatratar << "\n";
 }
@@ -145,28 +148,26 @@ void modificarficha(HashEncadenado *fichas)
     (*fichas).remove(rut);          // ahora se elimina ficha vieja de tabla
     std::cout << "Ingrese numero de elemento a modificar" << "\n";
     std::cout << "1. Pieza a tratar" << "\n";
+    std::cout << "2. Motivo de consulta" << "\n";
 
     std::cout << "Ingrese numero de elemento a modificar" << "\n";
 
     int modificar;
     std::cin >> modificar;
     fflush(stdin);
-    switch (modificar)
+    if (modificar == 1)
     {
-    case 1:
-
         std::cout << "Pieza a tratar de ficha:" << fichaaux.piezaatratar << "\n";
-
         std::cout << "Ingrese nueva pieza" << "\n";
-
         std::cin >> fichaaux.piezaatratar;
         fflush(stdin);
-        std::cout << "Pasa flsh" << "\n";
-        break;
-
-    default:
-
-        break;
+    }
+    else if(modificar==2)
+    {
+        std::cout << "Motivo de consulta en ficha:" << fichaaux.motivoconsulta << "\n";
+        std::cout << "Ingrese nuevo motivo" << "\n";
+        getline(std::cin,  fichaaux.motivoconsulta);
+        fflush(stdin);
     }
     // ingresar nueva ficha modificada
     (*fichas).insert(fichaaux);
@@ -189,7 +190,7 @@ int main()
     std::cout << "Bienvenido" << "\n";
     do // se repite hasta que salga
     {
-        std::cout << "Ingrese que desea hacer" << "\n";
+        std::cout << "\n\n\n"<<"Ingrese que desea hacer" << "\n";
         std::cout << "1.Organizar clientes en espera" << "\n";
         std::cout << "2.Trabajar con fichas" << "\n";
         std::cout << "3. Salir" << "\n";
@@ -208,88 +209,87 @@ int main()
             std::cin >> turno;
             fflush(stdin); // limpia buffer
 
-            
-                switch (turno)
+            switch (turno)
+            {
+            case 1: // quien debe pasar siguiente
+
+                consultafilas(&urgencia, &normal); // pasa por referncia porque es una funci처n
+                break;
+            case 2:                                    // Ingreso de pacientes
+                ingresofilaespera(&urgencia, &normal); // pasa por referencia porque es una funci처n
+
+                break;
+            default:
+                std::cout << "Error no siguio instrucciones" << "\n";
+                break;
+            }
+            break;
+        case 2: // FICHAS (HASH)
+
+            std::cout << "Ingrese que desea hacer" << "\n";
+
+            std::cout << "1. Consultar ficha" << "\n";
+            std::cout << "2. Ingresar/modificar/eliminar ficha" << "\n";
+            std::cin >> inputficha;
+            fflush(stdin); // limpia buffer
+            {
+                switch (inputficha)
                 {
-                case 1: // quien debe pasar siguiente
 
-                    consultafilas(&urgencia, &normal); // pasa por referncia porque es una funci처n
-                    break;
-                case 2:                                    // Ingreso de pacientes
-                    ingresofilaespera(&urgencia, &normal); // pasa por referencia porque es una funci처n
+                case 1:
+                { // consulta ficha
 
-                    break;
+                    consultaficha(&fichas);
+                }
+                break;
+                case 2:
+                { // ingreso/modifica/elimina ficha
+
+                    std::cout << "Ingrese que desea hacer" << "\n";
+
+                    std::cout << "1. Ingresar Ficha" << "\n";
+                    std::cout << "2. Eliminar Ficha" << "\n";
+                    std::cout << "3. Modificar Ficha" << "\n";
+                    std::cin >> modificar;
+                    fflush(stdin); // limpia buffer
+
+                    switch (modificar)
+                    {
+                    case 1: // Ingresar ficha
+                        nuevaficha(&fichas);
+                        break;
+                    case 2: // Eliminar ficha
+
+                        eliminaficha(&fichas);
+                        break;
+                    case 3: // Modificar ficha
+                        // para modificar
+                        modificarficha(&fichas);
+                        break;
+
+                    default:
+                        std::cout << "Error no siguio instrucciones " << "\n";
+                        break;
+                    }
+                }
+                break;
                 default:
                     std::cout << "Error no siguio instrucciones" << "\n";
                     break;
                 }
-                break;
-            case 2: // FICHAS (HASH)
+            }
 
-                std::cout << "Ingrese que desea hacer" << "\n";
+            break;
+        case 3:
+            // no pasa nada solo termina ejecucion
+            return 0;
+            break;
 
-                std::cout << "1. Consultar ficha" << "\n";
-                std::cout << "2. Ingresar/modificar/eliminar ficha" << "\n";
-                std::cin >> inputficha;
-                fflush(stdin); // limpia buffer
-                {
-                    switch (inputficha)
-                    {
+        default:
 
-                    case 1:
-                    { // consulta ficha
+            std::cout << "Error no siguio instrucciones" << "\n";
 
-                        consultaficha(&fichas);
-                    }
-                    break;
-                    case 2:
-                    { // ingreso/modifica/elimina ficha
-
-                        std::cout << "Ingrese que desea hacer" << "\n";
-
-                        std::cout << "1. Ingresar Ficha" << "\n";
-                        std::cout << "2. Eliminar Ficha" << "\n";
-                        std::cout << "3. Modificar Ficha" << "\n";
-                        std::cin >> modificar;
-                        fflush(stdin); // limpia buffer
-
-                        switch (modificar)
-                        {
-                        case 1: // Ingresar ficha
-                            nuevaficha(&fichas);
-                            break;
-                        case 2: // Eliminar ficha
-
-                            eliminaficha(&fichas);
-                            break;
-                        case 3: // Modificar ficha
-                            // para modificar
-                            modificarficha(&fichas);
-                            break;
-
-                        default:
-                            std::cout << "Error no siguio instrucciones (modificar)" << "\n";
-                            break;
-                        }
-                    }
-                    default:
-                        std::cout << "Error no siguio instrucciones(inputficha)" << "\n";
-                        break;
-                    }
-                }
-
-                break;
-            case 3:
-                // no pasa nada solo termina ejecucion
-                return 0;
-                break;
-                
-            default:
-
-                std::cout << "Error no siguio instrucciones(ingreso)" << "\n";
-
-                break;
-            
+            break;
         }
 
     } while (ingreso != 3);
