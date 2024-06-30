@@ -13,25 +13,27 @@ añadir/eliminar/modificar ficha
 */
 void consultafilas(ListQueue *urgencia, ListQueue *normal) // imprime al paciente que ahora le toca
 {
-    if ((normal->empty() == true) && (urgencia->empty() == true))
-    {
-        std::cout << "\n"
-                  << "No hay personas en espera" << "\n\n";
+    if (urgencia->empty() == true)
+    { // si no hay urgencia
+        if (normal->empty() == true)
+        { // si no hay nadie en ambas, es decir vacio
+            std::cout << "\n"
+                      << "No hay personas en espera" << "\n";
+        }
+        else
+        { // Caso donde no hay urgencia
+            std::cout << "\n"
+                      << "Ahora es el turno de:\n"
+                      << (*normal).front() << "\n";
+            (*normal).dequeue();
+        }
     }
-    if (((*urgencia).empty()) != (false))
-    {
-        // Caso donde hay urgencia
+    else
+    { // Caso donde hay urgencia
         std::cout << "\n"
                   << "Ahora es el turno de urgencia:\n"
-                  << (*urgencia).front() << "\n\n";
+                  << (*urgencia).front() << "\n";
         (*urgencia).dequeue();
-    }
-    if (((*urgencia).empty()) == (true))
-    { // Caso donde no hay urgencia
-        std::cout << "\n"
-                  << "Ahora es el turno de:\n"
-                  << (*normal).front() << "\n\n";
-        (*normal).dequeue();
     }
 }
 
