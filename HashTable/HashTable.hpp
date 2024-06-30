@@ -9,7 +9,7 @@ struct element_tablahash // Datos de la ficha
 
     
     char digitoverificador;
-    key_tablahash key; //va a ser el rut
+    key_tablahash key; //va a ser el rut sin digito verificador
     std::string motivoconsulta;
     std::string antecedentesdentales;
 

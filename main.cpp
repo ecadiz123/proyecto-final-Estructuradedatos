@@ -113,7 +113,7 @@ void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva 
     std::cout << "Ingrese antecedentes dentales" << "\n";
     getline(std::cin, fichaaux.antecedentesdentales);
     fflush(stdin);
-    std::cout << "Ingrese piezas a tratar" << "\n";
+    std::cout << "Ingrese pieza a tratar" << "\n";
     std::cin >> fichaaux.piezaatratar;
     fflush(stdin);
     (*fichasguardadas).insert(fichaaux);
@@ -127,7 +127,7 @@ void eliminaficha(HashEncadenado *fichas) // funcion para eliminar fichas
     fflush(stdin);
     (*fichas).remove(rut);
 
-    std::cout << "Se ha eliminado ficha de rut: " << rut << "\n";
+    std::cout << "Se ha eliminado ficha de rut: " << rut << "\n\n";
 }
 
 void modificarficha(HashEncadenado *fichas)
@@ -138,6 +138,7 @@ void modificarficha(HashEncadenado *fichas)
 
     std::cout << "Ingrese Rut sin digito verificador de ficha a modificar" << "\n";
     std::cin >> rut;
+    fflush(stdin);
     element_tablahash fichaaux;
 
     fichaaux = (*fichas).find(rut); // se copian elementos a ficha aux
@@ -160,9 +161,11 @@ void modificarficha(HashEncadenado *fichas)
 
         std::cin >> fichaaux.piezaatratar;
         fflush(stdin);
+        std::cout << "Pasa flsh" << "\n";
         break;
 
     default:
+
         break;
     }
     // ingresar nueva ficha modificada
@@ -265,12 +268,12 @@ int main()
                             break;
 
                         default:
-                            std::cout << "Error no siguio instrucciones" << "\n";
+                            std::cout << "Error no siguio instrucciones (modificar)" << "\n";
                             break;
                         }
                     }
                     default:
-                        std::cout << "Error no siguio instrucciones" << "\n";
+                        std::cout << "Error no siguio instrucciones(inputficha)" << "\n";
                         break;
                     }
                 }
@@ -279,10 +282,11 @@ int main()
             case 3:
                 // no pasa nada solo termina ejecucion
                 return 0;
-                ;
+                break;
+                
             default:
 
-                std::cout << "Error no siguio instrucciones" << "\n";
+                std::cout << "Error no siguio instrucciones(ingreso)" << "\n";
 
                 break;
             

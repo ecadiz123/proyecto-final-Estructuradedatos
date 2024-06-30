@@ -134,7 +134,7 @@ void HashEncadenado::remove(key_tablahash k)//función de eliminar
             {
                 anterior=borrando;
                 borrando=(*borrando).next;
-                _size--;
+                
 
             }
             
