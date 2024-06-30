@@ -30,7 +30,8 @@ void consultafilas(ListQueue *urgencia, ListQueue *normal) // imprime al pacient
                   << (*urgencia).front() << "\n\n";
         (*urgencia).dequeue();
     }
-    else // caso fila vacia
+    else if (normal->empty()==true && urgencia->empty()==true)
+    // caso fila vacia
     {
         std::cout << "\n"
                   << "No hay personas en espera" << "\n\n";
