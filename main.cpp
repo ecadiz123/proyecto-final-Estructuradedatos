@@ -148,6 +148,7 @@ void modificarficha(HashEncadenado *fichas)
     std::cout << "Ingrese numero de elemento a modificar" << "\n";
     std::cout << "1. Pieza a tratar" << "\n";
     std::cout << "2. Motivo de consulta" << "\n";
+    std::cout << "3. Antecedentes dentales" << "\n";
 
     std::cout << "Ingrese numero de elemento a modificar" << "\n";
 
@@ -167,7 +168,14 @@ void modificarficha(HashEncadenado *fichas)
         std::cout << "Ingrese nuevo motivo" << "\n";
         getline(std::cin, fichaaux.motivoconsulta);
         fflush(stdin);
+    }else if (modificar == 3)
+    {
+        std::cout << "Antecedentes ingresados: " << fichaaux.antecedentesdentales << "\n";
+        std::cout << " Ingrese antecedente anterior junto con nuevo: " << "\n";
+        getline(std::cin, fichaaux.motivoconsulta);
+        fflush(stdin);
     }
+    
     // ingresar nueva ficha modificada
     (*fichas).insert(fichaaux);
 }
