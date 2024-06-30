@@ -41,7 +41,7 @@ void consultafilas(ListQueue *urgencia, ListQueue *normal) // imprime al pacient
 void ingresofilaespera(ListQueue *urgencia, ListQueue *normal) // funcion que añade a alguien a la fila de espera
 {
     elemento_fila rut;
-    int ingresofila, turno;
+    int ingresofila;
 
     std::cout << "Ingrese rut paciente" << "\n";
 
