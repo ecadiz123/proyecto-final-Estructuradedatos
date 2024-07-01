@@ -69,13 +69,21 @@ void printficha(element_tablahash ficha) // Función para printear ficha
     std::cout << ficha.key << "-" << ficha.digitoverificador << "\n";
 
     std::cout << "\n"
-              << "Motivo de consulta" << "\n";
+              << "Motivo de consulta:" << "\n";
+    for (int i = 0; i <= ficha.sizemotivo; i++)
+    {
+        std::cout << ficha.motivoconsulta[i];
+    }
+    // for permiten imprimir especificamente la cantidad de caracteres usados y no de mas
 
-    std::cout << ficha.motivoconsulta << "\n";
     std::cout << "\n"
               << "Antecedentes dentales" << "\n";
 
-    std::cout << ficha.antecedentesdentales << "\n";
+    for (int i = 0; i <= ficha.sizeantecedentes; i++)
+    {
+        std::cout << ficha.antecedentesdentales[i];
+    }
+    // for permiten imprimir especificamente la cantidad de caracteres usados y no mas
     std::cout << "\n"
               << "Pieza a tratar:" << "\n";
 
@@ -102,27 +110,38 @@ void consultaficha(HashEncadenado *fichasguardadas) // funcion para consultar fi
 void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva ficha a guardar
 {
     element_tablahash fichaaux;
-    std::string stringaux,stringaux2;//se va a usar dos string aux para usar el getline
+    for (int i = 0; i <= _charsize; i++)
+    {
+        fichaaux.antecedentesdentales[i] = ' ';
+        fichaaux.motivoconsulta[i] = ' ';
+    } // for para inicializar arreglos de caracteres a utilizar
+
+    std::string stringaux, stringaux2; // se va a usar dos string aux para usar el getline
     // se volvio requerimiento usar fflush para limpiar el buffer de entrada al trabajar con strings
     std::cout << "Ingrese Rut sin digito verificador" << "\n";
     std::cin >> fichaaux.key;
     fflush(stdin);
+
     std::cout << "Ingrese digito verificador" << "\n";
     std::cin >> fichaaux.digitoverificador;
     fflush(stdin);
+
     std::cout << "Ingrese motivo de consulta:" << "\n";
     getline(std::cin, stringaux); // get line es una funcion de libreria <string>, obtiene toda la linea en vez de una palabra
     fflush(stdin);
-    stringaux.copy(fichaaux.motivoconsulta,stringaux.length(),0);//metodo copy de string transfiere toda la string a un arreglo char
+    fichaaux.sizemotivo = stringaux.length();
+    stringaux.copy(fichaaux.motivoconsulta, fichaaux.sizemotivo, 0); // metodo copy de string transfiere toda la string a un arreglo char
+
     std::cout << "Ingrese antecedentes dentales" << "\n";
-    getline(std::cin,stringaux2);
+    getline(std::cin, stringaux2);
     fflush(stdin);
-    stringaux2.copy(fichaaux.antecedentesdentales,stringaux2.length(),0);//metodo copy de string transfiere toda la string a un arreglo char
-    std::cout << "Ingrese antecedentes dentales" << "\n";
+    fichaaux.sizeantecedentes = stringaux2.length();
+    stringaux2.copy(fichaaux.antecedentesdentales, fichaaux.sizeantecedentes, 0); // metodo copy de string transfiere toda la string a un arreglo char
 
     std::cout << "Ingrese pieza a tratar" << "\n";
     std::cin >> fichaaux.piezaatratar;
     fflush(stdin);
+
     (*fichasguardadas).insert(fichaaux);
 }
 void eliminaficha(HashEncadenado *fichas) // funcion para eliminar fichas
@@ -140,7 +159,7 @@ void eliminaficha(HashEncadenado *fichas) // funcion para eliminar fichas
 void modificarficha(HashEncadenado *fichas)
 {
 
-       std::string stringaux;//string auxiliar para los getline
+    std::string stringaux; // string auxiliar para los getline
     // primero preguntar que ficha desea cambiar
     key_tablahash rut;
 
@@ -150,41 +169,55 @@ void modificarficha(HashEncadenado *fichas)
     element_tablahash fichaaux;
 
     fichaaux = (*fichas).find(rut); // se copian elementos a ficha aux
-    (*fichas).remove(rut);          // ahora se elimina ficha vieja de tabla
-    std::cout << "Ingrese numero de elemento a modificar" << "\n";
-    std::cout << "1. Pieza a tratar" << "\n";
-    std::cout << "2. Motivo de consulta" << "\n";
-    std::cout << "3. Antecedentes dentales" << "\n";
-
-    std::cout << "Ingrese numero de elemento a modificar" << "\n";
-
-    int modificar;
-    std::cin >> modificar;
-    fflush(stdin);
-    if (modificar == 1)
+    if (fichaaux.key == 0)
     {
-        std::cout << "Pieza a tratar de ficha:" << fichaaux.piezaatratar << "\n";
-        std::cout << "Ingrese nueva pieza" << "\n";
-        std::cin >> fichaaux.piezaatratar;
-        fflush(stdin);
+        //Caso donde no existe ficha indicada
+
+        std::cout << "Error no hay ficha con ese rut en el sistema." << "\n";
     }
-    else if (modificar == 2)
-        {std::cout << "Motivo de consulta en ficha:" << fichaaux.motivoconsulta << "\n";
-        std::cout << "Ingrese nuevo motivo" << "\n";
-        getline(std::cin, stringaux);
+    else
+    {
+        //caso donde si existe ficha indicada
+        (*fichas).remove(rut); // ahora se elimina ficha vieja de tabla
+        std::cout << "Ingrese numero de elemento a modificar" << "\n";
+        std::cout << "1. Pieza a tratar" << "\n";
+        std::cout << "2. Motivo de consulta" << "\n";
+        std::cout << "3. Antecedentes dentales" << "\n";
+
+        std::cout << "Ingrese numero de elemento a modificar" << "\n";
+
+        int modificar;
+        std::cin >> modificar;
         fflush(stdin);
-        stringaux.copy(fichaaux.motivoconsulta,stringaux.length(),0);//metodo copy de string transfiere toda la string a un arreglo char 
-    }else if (modificar == 3)
-    {   
-        std::cout << "Antecedentes ingresados: " << fichaaux.antecedentesdentales << "\n";
-        std::cout << "Ingrese antecedente anterior junto con nuevo: " << "\n";
-        getline(std::cin, stringaux);
-        stringaux.copy(fichaaux.motivoconsulta,stringaux.length(),0);//metodo copy de string transfiere toda la string a un arreglo char
-        fflush(stdin);
+        if (modificar == 1)
+        {
+            std::cout << "Pieza a tratar de ficha:" << fichaaux.piezaatratar << "\n";
+            std::cout << "Ingrese nueva pieza" << "\n";
+            std::cin >> fichaaux.piezaatratar;
+            fflush(stdin);
+        }
+        else if (modificar == 2)
+        {
+            std::cout << "Motivo de consulta en ficha:" << fichaaux.motivoconsulta << "\n";
+            std::cout << "Ingrese nuevo motivo" << "\n";
+            getline(std::cin, stringaux);
+            fflush(stdin);
+            fichaaux.sizemotivo = stringaux.length();
+            stringaux.copy(fichaaux.motivoconsulta, fichaaux.sizemotivo, 0); // metodo copy de string transfiere toda la string a un arreglo char
+        }
+        else if (modificar == 3)
+        {
+            std::cout << "Antecedentes ingresados: " << fichaaux.antecedentesdentales << "\n";
+            std::cout << "Ingrese antecedente anterior junto con nuevo(Max 200 caracteres): " << "\n";
+            getline(std::cin, stringaux);
+            fflush(stdin);
+            fichaaux.sizeantecedentes = stringaux.length();
+            stringaux.copy(fichaaux.antecedentesdentales, fichaaux.sizeantecedentes, 0); // metodo copy de string transfiere toda la string a un arreglo char
+        }
+
+        // ingresar nueva ficha modificada
+        (*fichas).insert(fichaaux);
     }
-    
-    // ingresar nueva ficha modificada
-    (*fichas).insert(fichaaux);
 }
 int main()
 {
