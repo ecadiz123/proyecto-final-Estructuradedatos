@@ -9,7 +9,9 @@ Cristian Vasquez
  Este proyecto consiste principalmente en una aplicion basada en C++ que es capaz de organizar ciertas funcionalidades de una clinica oodontologica. El fin de esta aplicación era poder tener un programa donde se utilizaran estructuras de datos, en este caso fila y tabla hash, hechas por alumnos de la clase de Estructura de Datos de la UCSC.
 ## Instrucciones de compilación
 ### Pre requisitos
-Es necesario tener algún compilador de C++, el que se recomienda es GCC del pproyecto GNU
+Es necesario tener algún compilador de C++, el que se recomienda es GCC del proyecto GNU
+
+Tambien tener una terminal disponible. En Windows se puede usar cmd o PowerShell y en sistemas basados en UNIX generalmente estan disponibles varias alternativas, como bash, zsh, entre otras.
 ### Instrucciones
 Primero descargue mediante ZIP o si tiene **git** instalado acceda a la carpeta donde desea tener el programa e ingrese en la terminal: 
 
