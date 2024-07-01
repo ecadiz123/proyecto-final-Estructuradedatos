@@ -29,14 +29,15 @@ void nuevaficha(HashEncadenado *fichasguardadas) // funcion para ingresar nueva 
 }
 int main()
 {
-    HashEncadenado fichas;
-    key_tablahash k;
-    nuevaficha(&fichas);
-
-    std::cout << "Rut:" << "\n";
-    std::cin >> k;
+   std::string aux;
+   char ingreso[100];
+    
+    getline(std::cin, aux);
+    aux.copy(ingreso,aux.length(),0);
     fflush(stdin);
-    printficha((fichas).find(k));
+    std::cout<<"String: "<<aux<<"\n";
+    std::cout<<"arreglo:"<<ingreso[3]<<"\n";
 
-    std::cout << "Anda bien" << "\n";
+
+
 }
